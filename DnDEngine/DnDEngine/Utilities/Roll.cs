@@ -7,7 +7,7 @@ namespace DnDEngine.Utilities
     /// <summary>
     /// The Roll class will hold all utilities for creating dice rolls.
     /// </summary>
-    class Roll
+    public class Roll
     {
         private int numberOfSides;
         private int numberOfDice;
