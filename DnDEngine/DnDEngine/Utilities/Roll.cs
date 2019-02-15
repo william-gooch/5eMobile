@@ -39,5 +39,42 @@ namespace DnDEngine.Utilities
         {
             return new Roll(numberOfSides, 1, 0);
         }
+
+        /// <summary>
+        /// This method overrides the + operator in order to add a modifier to the roll.
+        /// E.g. 1d10+5, the +5 adds 5 to the roll.
+        /// </summary>
+        /// <param name="roll">The roll to add the modifier to.</param>
+        /// <param name="modifier">The modifer to add.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Roll operator +(Roll roll, int modifier)
+        {
+            return new Roll(roll.numberOfSides, roll.numberOfDice, roll.modifier + modifier);
+        }
+
+        /// <summary>
+        /// This method overrides the - operator in order to take away a modifier from the roll.
+        /// E.g. 1d10-5, the -5 subtracts 5 from the roll.
+        /// </summary>
+        /// <param name="roll">The roll to subtract the modifier from.</param>
+        /// <param name="modifier">The modifier to subtract.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Roll operator -(Roll roll, int modifier)
+        {
+            return new Roll(roll.numberOfSides, roll.numberOfDice, roll.modifier - modifier);
+        }
+
+        /// <summary>
+        /// This method overrides the * operator in order to multiply the number of dice rolled.
+        /// E.g. 4d12+2, the 4 means that you roll 4 dice.
+        /// This can be combined with the + and - operators to generate a full dice roll.
+        /// </summary>
+        /// <param name="roll">The roll to multiply.</param>
+        /// <param name="numberOfDice">The number of dice to roll.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Roll operator *(Roll roll, int numberOfDice)
+        {
+            return new Roll(roll.numberOfSides, roll.numberOfDice * numberOfDice, roll.modifier);
+        }
     }
 }
