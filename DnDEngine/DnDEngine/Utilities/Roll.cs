@@ -27,5 +27,17 @@ namespace DnDEngine.Utilities
             this.numberOfDice = numberOfDice;
             this.modifier = modifier;
         }
+
+        /// <summary>
+        /// This method is a public constructor that only takes the number of sides.
+        /// This is called D to mimic the syntax that most rolls in DnD take in the books.
+        /// E.g. 2d20+2 rolls 2 20 sided dice and adds two.
+        /// </summary>
+        /// <example>D(20)</example>
+        /// <returns>The Roll instance created.</returns>
+        public static Roll D(int numberOfSides)
+        {
+            return new Roll(numberOfSides, 1, 0);
+        }
     }
 }
