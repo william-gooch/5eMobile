@@ -74,7 +74,7 @@ namespace DnDEngine.Utilities
         /// <param name="roll">The roll to multiply.</param>
         /// <param name="numberOfDice">The number of dice to roll.</param>
         /// <returns>The result of the operation.</returns>
-        public static Roll operator *(Roll roll, int numberOfDice)
+        public static Roll operator *(int numberOfDice, Roll roll)
         {
             return new Roll(roll.numberOfSides, roll.numberOfDice * numberOfDice, roll.modifier);
         }
