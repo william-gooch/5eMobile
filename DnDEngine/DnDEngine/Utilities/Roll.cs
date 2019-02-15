@@ -13,6 +13,8 @@ namespace DnDEngine.Utilities
         private int numberOfDice;
         private int modifier;
 
+        private static Random rnd = new Random();
+
         public int value;
 
         /// <summary>
@@ -75,6 +77,23 @@ namespace DnDEngine.Utilities
         public static Roll operator *(Roll roll, int numberOfDice)
         {
             return new Roll(roll.numberOfSides, roll.numberOfDice * numberOfDice, roll.modifier);
+        }
+
+        /// <summary>
+        /// This method actually performs the dice roll and returns the result.
+        /// The result is also stored in 'value' in case it needs to be accessed later.
+        /// </summary>
+        /// <returns>The result of the dice roll.</returns>
+        public int DoRoll()
+        {
+            int total = 0;
+            for(int i = 0; i < numberOfDice; i++)
+            {
+                total += rnd.Next(1, numberOfSides + 1);
+            }
+            total += modifier;
+            value = total;
+            return total;
         }
     }
 }
