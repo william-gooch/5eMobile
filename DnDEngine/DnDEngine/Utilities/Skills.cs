@@ -5,7 +5,7 @@ using System.Text;
 namespace DnDEngine.Utilities
 {
     [Flags]
-    enum Skills
+    public enum Skills
     {
         None = 0,
         Acrobatics = 1 << 0,
