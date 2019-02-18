@@ -5,7 +5,7 @@ using DnDEngine.Item;
 
 namespace DnDEngine.Character
 {
-    class Inventory
+    public class Inventory
     {
         private List<(Item.Item Item, int Quantity)> items;
 
