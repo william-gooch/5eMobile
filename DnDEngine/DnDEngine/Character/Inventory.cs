@@ -7,11 +7,21 @@ namespace DnDEngine.Character
 {
     class Inventory
     {
-        private List<Item> items;
+        private List<Item.Item> items;
 
         public Inventory()
         {
-            items = new List<Item>()
+            items = new List<Item.Item>();
+        }
+
+        public void AddItem(Item.Item item)
+        {
+            items.Add(item);
+        }
+
+        public Item.Item GetItem(string name)
+        {
+            return items.Find((Item.Item item) => item.Name == name);
         }
     }
 }
