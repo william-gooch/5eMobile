@@ -22,5 +22,10 @@ namespace DnDEngine.Character
             Wisdom = wisdom;
             Charisma = charisma;
         }
+
+        public Character Clone()
+        {
+            return new Character(Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma);
+        }
     }
 }
