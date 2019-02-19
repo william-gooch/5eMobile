@@ -6,6 +6,8 @@ namespace DnDEngine.Character
 {
     public class Character
     {
+        public string Name { get; private set; }
+
         public int Strength { get; private set; }
         public int Dexterity { get; private set; }
         public int Constitution { get; private set; }
@@ -13,8 +15,9 @@ namespace DnDEngine.Character
         public int Wisdom { get; private set; }
         public int Charisma { get; private set; }
 
-        public Character(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public Character(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
+            Name = name;
             Strength = strength;
             Dexterity = dexterity;
             Constitution = constitution;
@@ -25,7 +28,7 @@ namespace DnDEngine.Character
 
         public Character Clone()
         {
-            return new Character(Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma);
+            return new Character(Name, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma);
         }
     }
 }
