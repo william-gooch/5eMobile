@@ -15,7 +15,10 @@ namespace DnDEngine.Character
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
 
-        public Character(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public int ArmorClass { get; set; }
+        public int MaximumHitPoints { get; set; }
+
+        public Character(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int armorClass, int maximumHitPoints)
         {
             Name = name;
             Strength = strength;
@@ -24,11 +27,13 @@ namespace DnDEngine.Character
             Intelligence = intelligence;
             Wisdom = wisdom;
             Charisma = charisma;
+            ArmorClass = armorClass;
+            MaximumHitPoints = maximumHitPoints;
         }
 
         public Character Clone()
         {
-            return new Character(Name, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma);
+            return new Character(Name, Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, ArmorClass, MaximumHitPoints);
         }
     }
 }
