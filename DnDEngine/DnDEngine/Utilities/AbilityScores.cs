@@ -13,6 +13,14 @@ namespace DnDEngine.Utilities
         public int Wisdom { get; }
         public int Charisma { get; }
 
+        // The modifier for a given ability score is the (score - 10) / 2 and rounded down.
+        public int StrengthMod => (int)Math.Floor((double)(Strength - 10) / 2);
+        public int DexterityMod => (int)Math.Floor((double)(Dexterity - 10) / 2);
+        public int ConstitutionMod => (int)Math.Floor((double)(Constitution - 10) / 2);
+        public int IntelligenceMod => (int)Math.Floor((double)(Intelligence - 10) / 2);
+        public int WisdomMod => (int)Math.Floor((double)(Wisdom - 10) / 2);
+        public int CharismaMod => (int)Math.Floor((double)(Charisma - 10) / 2);
+
         public AbilityScores(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
             Strength = strength;
