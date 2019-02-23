@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnDEngine.Utilities
 {
-    class AbilityScores
+    public class AbilityScores
     {
         public int Strength { get; }
         public int Dexterity { get; }
