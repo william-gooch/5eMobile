@@ -17,6 +17,9 @@ namespace DnDEngine.Utilities
 
         public int value;
 
+        public int Max => (numberOfSides * numberOfDice) + modifier;
+        public int Avg => ((int)Math.Ceiling((double) numberOfSides / 2) * numberOfDice) + modifier;
+
         /// <summary>
         /// This private constructor is used within the class to make a new Roll instance.
         /// </summary>
