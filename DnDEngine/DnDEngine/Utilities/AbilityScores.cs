@@ -22,5 +22,29 @@ namespace DnDEngine.Utilities
             Wisdom = wisdom;
             Charisma = charisma;
         }
+
+        public static AbilityScores operator +(AbilityScores a, AbilityScores b)
+        {
+            return new AbilityScores(
+                a.Strength + b.Strength,
+                a.Dexterity + b.Dexterity,
+                a.Constitution + b.Constitution,
+                a.Intelligence + b.Intelligence,
+                a.Wisdom + b.Wisdom,
+                a.Charisma + b.Charisma
+                );
+        }
+
+        public static AbilityScores operator -(AbilityScores a, AbilityScores b)
+        {
+            return new AbilityScores(
+                a.Strength - b.Strength,
+                a.Dexterity - b.Dexterity,
+                a.Constitution - b.Constitution,
+                a.Intelligence - b.Intelligence,
+                a.Wisdom - b.Wisdom,
+                a.Charisma - b.Charisma
+                );
+        }
     }
 }
