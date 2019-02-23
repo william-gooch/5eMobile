@@ -5,26 +5,18 @@ using System.Text;
 
 namespace DnDEngine.Character
 {
-    public class Character
+    public abstract class Character
     {
         public string Name { get; set; }
 
         public AbilityScores BaseAbilityScores { get; set; }
 
-        public int ArmorClass { get; set; }
-        public int MaximumHitPoints { get; set; }
-
-        public Character(string name, AbilityScores baseAbilityScores, int armorClass, int maximumHitPoints)
-        {
-            Name = name;
-            BaseAbilityScores = baseAbilityScores;
-            ArmorClass = armorClass;
-            MaximumHitPoints = maximumHitPoints;
-        }
+        public virtual int ArmorClass { get; }
+        public virtual int MaximumHitPoints { get; }        
 
         public Character Clone()
         {
-            return new Character(Name, BaseAbilityScores, ArmorClass, MaximumHitPoints);
+            return MemberwiseClone() as Character;
         }
     }
 }
