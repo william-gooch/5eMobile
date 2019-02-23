@@ -13,7 +13,7 @@ namespace DnDEngine.Character
     {
         // A PC's armor class is 10 + their dexterity modifier.
         public override int ArmorClass => 10 + this.BaseAbilityScores.DexterityMod;
-        public override int MaximumHitPoints => throw new NotImplementedException();
+        public override int MaximumHitPoints => Class.HitDice.Max; // TODO: include leveling up
 
         public CharacterRace.CharacterRace Race { get; }
         public CharacterClass.CharacterClass Class { get; }
