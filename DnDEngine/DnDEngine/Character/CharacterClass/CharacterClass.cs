@@ -14,5 +14,7 @@ namespace DnDEngine.Character.CharacterClass
 
         public abstract Skills SkillProficiencies { get; }
         public abstract SavingThrows SavingThrowProficiencies { get; }
+
+        protected CharacterClass() { }
     }
 }
