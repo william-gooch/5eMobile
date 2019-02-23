@@ -5,14 +5,14 @@ using System.Text;
 
 namespace DnDEngine.Character.CharacterClass
 {
-    public class CharacterClass
+    public abstract class CharacterClass
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        public abstract string Name { get; }
+        public abstract string Description { get; }
 
-        public Roll HitDice { get; private set; }
+        public abstract Roll HitDice { get; }
 
-        public Skills SkillProficiencies { get; private set; }
-        public SavingThrows SavingThrowProficiencies { get; private set; }
+        public abstract Skills SkillProficiencies { get; }
+        public abstract SavingThrows SavingThrowProficiencies { get; }
     }
 }
