@@ -7,9 +7,14 @@ namespace DnDEngine.Character
 {
     public class PlayerCharacter : Character
     {
-        public PlayerCharacter(string name, AbilityScores baseAbilityScores, int armorClass, int maximumHitPoints) : base(name, baseAbilityScores, armorClass, maximumHitPoints)
-        {
+        // A PC's armor class is 10 + their dexterity modifier.
+        public override int ArmorClass => 10 + this.BaseAbilityScores.DexterityMod;
+        public override int MaximumHitPoints => throw new NotImplementedException();
 
+        public PlayerCharacter(string name, AbilityScores baseAbilityScores)
+        {
+            Name = name;
+            BaseAbilityScores = baseAbilityScores;
         }
     }
 }
