@@ -5,14 +5,14 @@ using System.Text;
 
 namespace DnDEngine.Character.CharacterRace
 {
-    public class CharacterRace
+    public abstract class CharacterRace
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        public abstract string Name { get; }
+        public abstract string Description { get; }
 
-        public Size Size { get; private set; }
-        public int Speed { get; private set; }
+        public abstract Size Size { get; }
+        public abstract int Speed { get; }
 
-        public AbilityScores AbilityScoresMod { get; private set; }
+        public abstract AbilityScores AbilityScoresMod { get; }
     }
 }
