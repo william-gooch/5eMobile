@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DnDEngine.Character
+namespace DnDEngine.Character.CharacterRace
 {
     public class CharacterRace
     {
