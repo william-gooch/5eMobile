@@ -9,7 +9,10 @@ namespace DnDEngine.Character
     {
         public string Name { get; private set; }
         public string Description { get; private set; }
+
         public Size Size { get; private set; }
         public int Speed { get; private set; }
+
+        public AbilityScores AbilityScoresMod { get; private set; }
     }
 }
