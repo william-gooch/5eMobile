@@ -52,6 +52,7 @@
     <Compile Include="InventoryTest.cs" />
     <Compile Include="RollTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CharacterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
