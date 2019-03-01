@@ -18,7 +18,9 @@ namespace DnDEngine.Character
         public AbilityScores BaseAbilityScores { get; set; }
 
         public virtual int ArmorClass { get; }
-        public virtual int MaximumHitPoints { get; }        
+        public virtual int MaximumHitPoints { get; }
+
+        public List<CharacterTrait> characterTraits { get; }
 
         /// <summary>
         /// Clones the object, including the dictionary of character actions.
