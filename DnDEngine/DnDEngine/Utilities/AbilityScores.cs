@@ -4,7 +4,11 @@ using System.Text;
 
 namespace DnDEngine.Utilities
 {
-    public class AbilityScores
+    /// <summary>
+    /// Holds a set of ability scores.
+    /// These can be added and subtracted.
+    /// </summary>
+    public struct AbilityScores
     {
         public int Strength { get; }
         public int Dexterity { get; }
@@ -21,6 +25,9 @@ namespace DnDEngine.Utilities
         public int WisdomMod => (int)Math.Floor((double)(Wisdom - 10) / 2);
         public int CharismaMod => (int)Math.Floor((double)(Charisma - 10) / 2);
 
+        /// <summary>
+        /// Constructor that creates an instance of AbilityScores.
+        /// </summary>
         public AbilityScores(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
             Strength = strength;
@@ -31,6 +38,10 @@ namespace DnDEngine.Utilities
             Charisma = charisma;
         }
 
+        /// <summary>
+        /// Adds two ability scores together.
+        /// </summary>
+        /// <returns>The sum of the two ability scores.</returns>
         public static AbilityScores operator +(AbilityScores a, AbilityScores b)
         {
             return new AbilityScores(
@@ -43,6 +54,10 @@ namespace DnDEngine.Utilities
                 );
         }
 
+        /// <summary>
+        /// Subtracts one ability score from the other.
+        /// </summary>
+        /// <returns>The result of the subtraction.</returns>
         public static AbilityScores operator -(AbilityScores a, AbilityScores b)
         {
             return new AbilityScores(

@@ -4,6 +4,12 @@ using System.Text;
 
 namespace DnDEngine.Utilities
 {
+    /// <summary>
+    /// Contains the skills present in the game.
+    /// Each is a flag (i.e. only one binary digit in varying places) which means
+    /// that there can be multiple skills in just one representation.
+    /// </summary>
+    /// <example>Skills.Acrobatics | Skills.Arcana will include both skills.</example>
     [Flags]
     public enum Skills
     {

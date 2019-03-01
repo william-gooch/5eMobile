@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DnDEngine.Utilities
 {
+    /// <summary>
+    /// Describes the different sizes that a Character can be.
+    /// </summary>
     public enum Size
     {
         Tiny,

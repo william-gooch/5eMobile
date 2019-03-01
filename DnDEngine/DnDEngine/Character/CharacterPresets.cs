@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DnDEngine.Character
 {
+    /// <summary>
+    /// Holds many example characters to use in testing.
+    /// </summary>
     public static class CharacterPresets
     {
         public static Character goblin = new CharacterPreset("Goblin", new AbilityScores(8, 14, 10, 10, 8, 8), 15, 7);

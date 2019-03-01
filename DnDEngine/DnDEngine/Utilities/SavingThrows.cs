@@ -4,6 +4,10 @@ using System.Text;
 
 namespace DnDEngine.Utilities
 {
+    /// <summary>
+    /// Contains all of the different kinds of saving throws that can happen.
+    /// This is used to implement saving throw proficiencies.
+    /// </summary>
     [Flags]
     public enum SavingThrows
     {

@@ -5,6 +5,11 @@ using System.Text;
 
 namespace DnDEngine.Character.CharacterRace
 {
+    /// <summary>
+    /// Describes the race of a character.
+    /// Includes a name, a description, a size and speed, and
+    /// some ability score modifier (not implemented yet)
+    /// </summary>
     public abstract class CharacterRace
     {
         public abstract string Name { get; }
