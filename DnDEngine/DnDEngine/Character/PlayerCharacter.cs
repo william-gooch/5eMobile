@@ -32,7 +32,7 @@ namespace DnDEngine.Character
         /// <param name="race">The character's race.</param>
         /// <param name="_class">The character's class.</param>
         /// <param name="background">The character's background.</param>
-        public PlayerCharacter(string name, AbilityScores baseAbilityScores, CharacterRace.CharacterRace race, CharacterClass.CharacterClass _class, CharacterBackground.CharacterBackground background)
+        public PlayerCharacter(string name, AbilityScores baseAbilityScores, CharacterRace.CharacterRace race, CharacterClass.CharacterClass _class, CharacterBackground.CharacterBackground background) : base()
         {
             Name = name;
             BaseAbilityScores = baseAbilityScores;

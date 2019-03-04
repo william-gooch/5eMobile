@@ -22,7 +22,7 @@ namespace DnDEngine.Character
         /// <param name="baseAbilityScores">The character's ability scores.</param>
         /// <param name="armorClass">The character's armor class.</param>
         /// <param name="maximumHitPoints">The character's maximum hit points.</param>
-        public CharacterPreset(string name, AbilityScores baseAbilityScores, int armorClass, int maximumHitPoints)
+        public CharacterPreset(string name, AbilityScores baseAbilityScores, int armorClass, int maximumHitPoints) : base()
         {
             Name = name;
             BaseAbilityScores = baseAbilityScores;

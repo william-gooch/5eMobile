@@ -20,7 +20,11 @@ namespace DnDEngine.Character
         public virtual int ArmorClass { get; }
         public virtual int MaximumHitPoints { get; }
 
-        public List<CharacterTrait> characterTraits { get; }
+        public List<CharacterTrait> CharacterTraits { get; }
+
+        protected Character() {
+            CharacterTraits = new List<CharacterTrait>();
+        }
 
         /// <summary>
         /// Clones the object, including the dictionary of character actions.
