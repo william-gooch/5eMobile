@@ -65,6 +65,7 @@ namespace DnDExample
             var myEnemy = CharacterPresets.goblin.Clone();
             CharacterInfo(myEnemy);
 
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
     }
