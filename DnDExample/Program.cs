@@ -59,6 +59,11 @@ namespace DnDExample
                 new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte());
             PlayerCharacterInfo(myPlayerCharacter);
 
+            Console.WriteLine("\n\n");
+
+            var myEnemy = CharacterPresets.goblin.Clone();
+            CharacterInfo(myEnemy);
+
             Console.ReadKey();
         }
     }
