@@ -21,6 +21,8 @@ namespace DnDEngine.Character.CharacterClass
         public abstract Skills SkillProficiencies { get; }
         public abstract SavingThrows SavingThrowProficiencies { get; }
 
+        public abstract List<CharacterTrait> CharacterTraits { get; }
+
         /// <summary>
         /// This means that an instance of this can be initialized in the constructor for a
         /// child class.
