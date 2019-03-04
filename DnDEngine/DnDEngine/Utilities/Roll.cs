@@ -82,6 +82,11 @@ namespace DnDEngine.Utilities
             return new Roll(roll.numberOfSides, roll.numberOfDice * numberOfDice, roll.modifier);
         }
 
+        public override string ToString()
+        {
+            return numberOfDice + "d" + numberOfSides + "+" + modifier;
+        }
+
         /// <summary>
         /// This method actually performs the dice roll and returns the result.
         /// The result is also stored in 'value' in case it needs to be accessed later.
