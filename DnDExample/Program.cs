@@ -18,6 +18,7 @@ namespace DnDExample
             Console.WriteLine($"{character.Race.Name} {character.Class.Name}, {character.Background.Name}");
             Console.WriteLine($"HP: {character.MaximumHitPoints}");
             Console.WriteLine($"Armor Class: {character.ArmorClass}");
+            Console.WriteLine($"Hit Dice: {character.Class.HitDice}");
 
             Console.WriteLine($"STR: {character.BaseAbilityScores.Strength} ({character.BaseAbilityScores.StrengthMod})");
             Console.WriteLine($"DEX: {character.BaseAbilityScores.Dexterity} ({character.BaseAbilityScores.DexterityMod})");
