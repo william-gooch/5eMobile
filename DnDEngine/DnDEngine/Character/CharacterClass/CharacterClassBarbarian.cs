@@ -14,5 +14,9 @@ namespace DnDEngine.Character.CharacterClass
 
         public override Skills SkillProficiencies => throw new NotImplementedException();
         public override SavingThrows SavingThrowProficiencies { get; } = SavingThrows.Strength | SavingThrows.Constitution;
+
+        public override List<CharacterTrait> CharacterTraits => new List<CharacterTrait> {
+            new CharacterTrait("Unarmored Defense", "While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.")
+        };
     }
 }
