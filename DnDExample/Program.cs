@@ -12,28 +12,33 @@ namespace DnDExample
 {
     class Program
     {
+        static void PlayerCharacterInfo(PlayerCharacter character)
+        {
+            Console.WriteLine($"--- {character.Name.ToUpper()} ---");
+            Console.WriteLine($"{character.Race.Name} {character.Class.Name}, {character.Background.Name}");
+            Console.WriteLine($"HP: {character.MaximumHitPoints}");
+            Console.WriteLine($"Armor Class: {character.ArmorClass}");
+
+            Console.WriteLine($"STR: {character.BaseAbilityScores.Strength} ({character.BaseAbilityScores.StrengthMod})");
+            Console.WriteLine($"DEX: {character.BaseAbilityScores.Dexterity} ({character.BaseAbilityScores.DexterityMod})");
+            Console.WriteLine($"CON: {character.BaseAbilityScores.Constitution} ({character.BaseAbilityScores.ConstitutionMod})");
+            Console.WriteLine($"INT: {character.BaseAbilityScores.Intelligence} ({character.BaseAbilityScores.IntelligenceMod})");
+            Console.WriteLine($"WIS: {character.BaseAbilityScores.Wisdom} ({character.BaseAbilityScores.WisdomMod})");
+            Console.WriteLine($"CHA: {character.BaseAbilityScores.Charisma} ({character.BaseAbilityScores.CharismaMod})");
+            Console.WriteLine("\nTRAITS:\n");
+            character.CharacterTraits.ForEach((trait) =>
+            {
+                Console.WriteLine(trait.Name.ToUpper() + ":\n" + trait.Description);
+            });
+        }
+
         static void Main(string[] args)
         {
             var myPlayerCharacter = new PlayerCharacter("Lukan Volgen", new AbilityScores(20, 9, 16, 9, 13, 12),
                 new DnDEngine.Character.CharacterRace.CharacterRaceDragonborn(),
                 new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
                 new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte());
-            Console.WriteLine($"--- {myPlayerCharacter.Name.ToUpper()} ---");
-            Console.WriteLine($"{myPlayerCharacter.Race.Name} {myPlayerCharacter.Class.Name}, {myPlayerCharacter.Background.Name}");
-            Console.WriteLine($"HP: {myPlayerCharacter.MaximumHitPoints}");
-            Console.WriteLine($"Armor Class: {myPlayerCharacter.ArmorClass}");
-
-            Console.WriteLine($"STR: {myPlayerCharacter.BaseAbilityScores.Strength} ({myPlayerCharacter.BaseAbilityScores.StrengthMod})");
-            Console.WriteLine($"DEX: {myPlayerCharacter.BaseAbilityScores.Dexterity} ({myPlayerCharacter.BaseAbilityScores.DexterityMod})");
-            Console.WriteLine($"CON: {myPlayerCharacter.BaseAbilityScores.Constitution} ({myPlayerCharacter.BaseAbilityScores.ConstitutionMod})");
-            Console.WriteLine($"INT: {myPlayerCharacter.BaseAbilityScores.Intelligence} ({myPlayerCharacter.BaseAbilityScores.IntelligenceMod})");
-            Console.WriteLine($"WIS: {myPlayerCharacter.BaseAbilityScores.Wisdom} ({myPlayerCharacter.BaseAbilityScores.WisdomMod})");
-            Console.WriteLine($"CHA: {myPlayerCharacter.BaseAbilityScores.Charisma} ({myPlayerCharacter.BaseAbilityScores.CharismaMod})");
-            Console.WriteLine("\nTRAITS:\n");
-            myPlayerCharacter.CharacterTraits.ForEach((trait) =>
-            {
-                Console.WriteLine(trait.Name.ToUpper() + ":\n" + trait.Description);
-            });
+            PlayerCharacterInfo(myPlayerCharacter);
 
             Console.ReadKey();
         }
