@@ -41,7 +41,7 @@ namespace DnDTests
                 new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
                 new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte()
                 );
-            Assert.AreEqual(myPC.CharacterTraits[0].Name, "Unarmored Defense");
+            Assert.IsTrue(myPC.CharacterTraits.Exists((trait) => trait.Name == "Unarmored Defense"));
         }
     }
 }
