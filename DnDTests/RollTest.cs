@@ -19,10 +19,9 @@ namespace DnDTests
         [TestMethod]
         public void TestModifyRoll()
         {
-            var roll = Roll.D(20) + 3;
-            roll.DoRoll();
-            Assert.IsTrue(roll.value > 4);
-            Console.WriteLine(roll.value);
+            var roll = 2 * Roll.D(20) + 3;
+            Assert.IsTrue(roll.Max == 43);
+            Console.WriteLine(roll.DoRoll());
         }
     }
 }
