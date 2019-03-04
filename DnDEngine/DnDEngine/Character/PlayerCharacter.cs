@@ -1,6 +1,7 @@
 ﻿using DnDEngine.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DnDEngine.Character.CharacterBackground;
 using DnDEngine.Character.CharacterClass;
@@ -23,6 +24,14 @@ namespace DnDEngine.Character
         public CharacterRace.CharacterRace Race { get; }
         public CharacterClass.CharacterClass Class { get; }
         public CharacterBackground.CharacterBackground Background { get; }
+
+        public override List<CharacterTrait> CharacterTraits
+        {
+            get
+            {
+                return base.CharacterTraits.Concat(Class.CharacterTraits) as List<CharacterTrait>;
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a PlayerCharacter.
