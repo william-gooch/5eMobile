@@ -20,7 +20,7 @@ namespace DnDEngine.Character
         public virtual int ArmorClass { get; }
         public virtual int MaximumHitPoints { get; }
 
-        public List<CharacterTrait> CharacterTraits { get; }
+        public List<CharacterTrait> CharacterTraits { get; protected set; }
 
         protected Character() {
             CharacterTraits = new List<CharacterTrait>();
@@ -32,7 +32,9 @@ namespace DnDEngine.Character
         /// <returns>The clone of this Character.</returns>
         public Character Clone()
         {
-            return MemberwiseClone() as Character;
+            Character clone = MemberwiseClone() as Character;
+            clone.CharacterTraits = new List<CharacterTrait>(CharacterTraits);
+            return clone;
         }
     }
 }
