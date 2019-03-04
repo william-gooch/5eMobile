@@ -19,5 +19,7 @@ namespace DnDEngine.Character.CharacterRace
         public abstract int Speed { get; }
 
         public abstract AbilityScores AbilityScoresMod { get; }
+
+        public abstract List<CharacterTrait> CharacterTraits { get; }
     }
 }

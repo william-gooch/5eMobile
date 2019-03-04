@@ -14,5 +14,10 @@ namespace DnDEngine.Character.CharacterRace
         public override int Speed { get; } = 30;
 
         public override AbilityScores AbilityScoresMod { get; } = new AbilityScores(2, 0, 0, 0, 0, 1);
+
+        public override List<CharacterTrait> CharacterTraits => new List<CharacterTrait>
+        {
+            new CharacterTrait("Draconic Ancestry", "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.")
+        };
     }
 }
