@@ -31,5 +31,17 @@ namespace DnDTests
             Assert.AreEqual(myGoblin.ArmorClass, 15);
             Assert.AreEqual(myGoblin.Name, "Goblin");
         }
+
+        [TestMethod]
+        public void TestCharacterTraits()
+        {
+            Character myPC = new PlayerCharacter(
+                "Jorgen Windhelm", new AbilityScores(16, 9, 15, 11, 13, 14),
+                new DnDEngine.Character.CharacterRace.CharacterRaceDragonborn(),
+                new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
+                new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte()
+                );
+            Assert.AreEqual(myPC.CharacterTraits[0].Name, "Unarmored Defense");
+        }
     }
 }
