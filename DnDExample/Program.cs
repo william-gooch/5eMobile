@@ -32,6 +32,25 @@ namespace DnDExample
             });
         }
 
+        static void CharacterInfo(Character character)
+        {
+            Console.WriteLine($"--- {character.Name.ToUpper()} ---");
+            Console.WriteLine($"HP: {character.MaximumHitPoints}");
+            Console.WriteLine($"Armor Class: {character.ArmorClass}");
+
+            Console.WriteLine($"STR: {character.BaseAbilityScores.Strength} ({character.BaseAbilityScores.StrengthMod})");
+            Console.WriteLine($"DEX: {character.BaseAbilityScores.Dexterity} ({character.BaseAbilityScores.DexterityMod})");
+            Console.WriteLine($"CON: {character.BaseAbilityScores.Constitution} ({character.BaseAbilityScores.ConstitutionMod})");
+            Console.WriteLine($"INT: {character.BaseAbilityScores.Intelligence} ({character.BaseAbilityScores.IntelligenceMod})");
+            Console.WriteLine($"WIS: {character.BaseAbilityScores.Wisdom} ({character.BaseAbilityScores.WisdomMod})");
+            Console.WriteLine($"CHA: {character.BaseAbilityScores.Charisma} ({character.BaseAbilityScores.CharismaMod})");
+            Console.WriteLine("\nTRAITS:\n");
+            character.CharacterTraits.ForEach((trait) =>
+            {
+                Console.WriteLine(trait.Name.ToUpper() + ":\n" + trait.Description);
+            });
+        }
+
         static void Main(string[] args)
         {
             var myPlayerCharacter = new PlayerCharacter("Lukan Volgen", new AbilityScores(20, 9, 16, 9, 13, 12),
