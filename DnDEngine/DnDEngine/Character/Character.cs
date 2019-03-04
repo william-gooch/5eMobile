@@ -21,13 +21,7 @@ namespace DnDEngine.Character
         public virtual int MaximumHitPoints { get; }
 
         protected List<CharacterTrait> characterTraits;
-        public virtual List<CharacterTrait> CharacterTraits
-        {
-            get
-            {
-                return characterTraits;
-            }
-        }
+        public virtual List<CharacterTrait> CharacterTraits => characterTraits;
 
         protected Character() {
             characterTraits = new List<CharacterTrait>();
