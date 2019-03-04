@@ -11,5 +11,11 @@ namespace DnDEngine.Character
     {
         public string Name { get; }
         public string Description { get; }
+
+        public CharacterTrait(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
     }
 }
