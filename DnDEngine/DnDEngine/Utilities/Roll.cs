@@ -84,7 +84,10 @@ namespace DnDEngine.Utilities
 
         public override string ToString()
         {
-            return numberOfDice + "d" + numberOfSides + "+" + modifier;
+            var rollString = numberOfDice + "d" + numberOfSides;
+            if (modifier > 0) rollString += "+" + modifier;
+            if (modifier < 0) rollString += "-" + -modifier;
+            return rollString;
         }
 
         /// <summary>
