@@ -29,7 +29,7 @@ namespace DnDEngine.Character
         {
             get
             {
-                return base.CharacterTraits.Concat(Class.CharacterTraits).Concat(Race.CharacterTraits).ToList();
+                return base.CharacterTraits.Concat(Class.CharacterTraits).Concat(Race.CharacterTraits).Concat(Background.CharacterTraits).ToList();
             }
         }
 
