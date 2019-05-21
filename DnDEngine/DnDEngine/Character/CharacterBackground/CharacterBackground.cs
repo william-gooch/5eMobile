@@ -12,5 +12,7 @@ namespace DnDEngine.Character.CharacterBackground
     {
         public abstract string Name { get; }
         public abstract string Description { get; }
+
+        public abstract List<CharacterTrait> CharacterTraits { get; }
     }
 }
