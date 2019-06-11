@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DnDEngine.Character.CharacterBackground;
-using DnDEngine.Character.CharacterClass;
-using DnDEngine.Character.CharacterRace;
+using DnDEngine.Character;
 
 namespace DnDEngine.Character
 {
@@ -21,9 +19,9 @@ namespace DnDEngine.Character
         // A PC's max hit points is just the maximum roll of their hit dice (at level 1)
         public override int MaximumHitPoints => Class.HitDice.Max; // TODO: include leveling up
 
-        public CharacterRace.CharacterRace Race { get; }
-        public CharacterClass.CharacterClass Class { get; }
-        public CharacterBackground.CharacterBackground Background { get; }
+        public CharacterRace Race { get; }
+        public CharacterClass Class { get; }
+        public CharacterBackground Background { get; }
 
         public override List<CharacterTrait> CharacterTraits
         {
@@ -44,7 +42,7 @@ namespace DnDEngine.Character
         /// <param name="race">The character's race.</param>
         /// <param name="_class">The character's class.</param>
         /// <param name="background">The character's background.</param>
-        public PlayerCharacter(string name, AbilityScores baseAbilityScores, CharacterRace.CharacterRace race, CharacterClass.CharacterClass _class, CharacterBackground.CharacterBackground background) : base()
+        public PlayerCharacter(string name, AbilityScores baseAbilityScores, CharacterRace race, CharacterClass _class, CharacterBackground background) : base()
         {
             Name = name;
             BaseAbilityScores = baseAbilityScores;

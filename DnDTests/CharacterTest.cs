@@ -14,9 +14,9 @@ namespace DnDTests
             PlayerCharacter myCharacter = new PlayerCharacter(
                 "Jorgen Windhelm",
                 new AbilityScores(16, 9, 15, 11, 13, 14),
-                new DnDEngine.Character.CharacterRace.CharacterRaceDragonborn(),
-                new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
-                new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte()
+                new DnDEngine.Character.CharacterRace.Dragonborn(),
+                new DnDEngine.Character.CharacterClass.Barbarian(),
+                new DnDEngine.Character.CharacterBackground.Acolyte()
             );
             Assert.AreEqual(myCharacter.Name, "Jorgen Windhelm");
             Assert.AreEqual(myCharacter.Race.Name, "Dragonborn");
@@ -37,9 +37,9 @@ namespace DnDTests
         {
             Character myPC = new PlayerCharacter(
                 "Jorgen Windhelm", new AbilityScores(16, 9, 15, 11, 13, 14),
-                new DnDEngine.Character.CharacterRace.CharacterRaceDragonborn(),
-                new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
-                new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte()
+                new CharacterRace.Dragonborn(),
+                new CharacterClass.Barbarian(),
+                new CharacterBackground.Acolyte()
                 );
             Assert.IsTrue(myPC.CharacterTraits.Exists((trait) => trait.Name == "Unarmored Defense"));
         }

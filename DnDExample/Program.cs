@@ -55,9 +55,9 @@ namespace DnDExample
         static void Main(string[] args)
         {
             var myPlayerCharacter = new PlayerCharacter("Lukan Volgen", new AbilityScores(20, 9, 16, 9, 13, 12),
-                new DnDEngine.Character.CharacterRace.CharacterRaceDragonborn(),
-                new DnDEngine.Character.CharacterClass.CharacterClassBarbarian(),
-                new DnDEngine.Character.CharacterBackground.CharacterBackgroundAcolyte());
+                new CharacterRace.Dragonborn(),
+                new CharacterClass.Barbarian(),
+                new CharacterBackground.Acolyte());
             PlayerCharacterInfo(myPlayerCharacter);
 
             Console.WriteLine("\n\n");

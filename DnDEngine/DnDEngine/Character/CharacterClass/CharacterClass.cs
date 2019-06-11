@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DnDEngine.Character.CharacterClass
+namespace DnDEngine.Character
 {
     /// <summary>
     /// Describes a character's class.
@@ -11,7 +11,7 @@ namespace DnDEngine.Character.CharacterClass
     /// and saving throw proficiencies.
     /// All of these are abstract and can be overridden.
     /// </summary>
-    public abstract class CharacterClass
+    public abstract partial class CharacterClass
     {
         public abstract string Name { get; }
         public abstract string Description { get; }
