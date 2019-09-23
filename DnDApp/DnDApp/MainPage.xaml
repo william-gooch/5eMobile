@@ -5,8 +5,7 @@
              x:Class="DnDApp.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label XAlign="Center">Dungeons and Dragons App</Label>
+        
     </StackLayout>
 
 </ContentPage>
