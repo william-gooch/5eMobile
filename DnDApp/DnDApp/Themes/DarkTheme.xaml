@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDApp.Themes.DarkTheme">
+    <!-- Background Colors -->
+    <Color x:Key="BackgroundColor">#707070</Color>
+    <Color x:Key="ListItemColor">#4D4D4D</Color>
+    <Color x:Key="NavigationBarColor">#3E3E3E</Color>
+    
+    <!-- Control Colors -->
+    <Color x:Key="PrimaryColor">White</Color>
+    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="AccentColor">#A60000</Color>
+    <Color x:Key="AccentTextColor">White</Color>
+</ResourceDictionary>
