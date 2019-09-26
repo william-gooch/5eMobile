@@ -4,8 +4,16 @@
              xmlns:local="clr-namespace:DnDApp"
              x:Class="DnDApp.MainPage">
 
-    <StackLayout>
-        
+    <StackLayout Margin="20,20,20,20">
+        <Button Text="Characters"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"/>
+        <Button Text="Maps"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"/>
+        <Button Text="Games"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"/>
     </StackLayout>
 
 </ContentPage>
