@@ -4,5 +4,22 @@
              x:Class="DnDApp.App">
     <Application.Resources>
         <ResourceDictionary Source="Themes/DarkTheme.xaml" />
+        
+        <!-- Implicit Styles - applied to all views of target type -->
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+        </Style>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+            <Setter Property="BarTextColor" Value="{DynamicResource DefaultTextColor}" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="BorderWidth" Value="{DynamicResource BorderWidth}" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CornerRadius}" />
+        </Style>
     </Application.Resources>
 </Application>

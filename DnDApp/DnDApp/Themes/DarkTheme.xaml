@@ -6,10 +6,15 @@
     <Color x:Key="BackgroundColor">#707070</Color>
     <Color x:Key="ListItemColor">#4D4D4D</Color>
     <Color x:Key="NavigationBarColor">#3E3E3E</Color>
-    
+    <Color x:Key="DefaultTextColor">White</Color>
+
     <!-- Control Colors -->
     <Color x:Key="PrimaryColor">White</Color>
-    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="PrimaryTextColor">Black</Color>
     <Color x:Key="AccentColor">#A60000</Color>
     <Color x:Key="AccentTextColor">White</Color>
+    
+    <!-- Other Settings -->
+    <x:Double x:Key="BorderWidth">7</x:Double>
+    <x:Int32 x:Key="CornerRadius">20</x:Int32>
 </ResourceDictionary>
