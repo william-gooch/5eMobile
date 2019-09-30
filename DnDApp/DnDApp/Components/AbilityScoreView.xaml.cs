@@ -12,9 +12,35 @@ namespace DnDApp.Components
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AbilityScoreView : ContentView
     {
+        public static readonly BindableProperty NameProperty =
+            BindableProperty.Create("Name", typeof(string), typeof(AbilityScoreView), "Strength");
+        public string Name
+        {
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
+        }
+
+        public static readonly BindableProperty ScoreProperty =
+            BindableProperty.Create("Score", typeof(int), typeof(AbilityScoreView), 0);
+        public int Score
+        {
+            get { return (int)GetValue(ScoreProperty); }
+            set { SetValue(ScoreProperty, value); }
+        }
+
+        public static readonly BindableProperty ModifierProperty =
+            BindableProperty.Create("Modifier", typeof(int), typeof(AbilityScoreView), 0);
+        public int Modifier
+        {
+            get { return (int)GetValue(ModifierProperty); }
+            set { SetValue(ModifierProperty, value); }
+        }
+
         public AbilityScoreView()
         {
             InitializeComponent();
+
+            Console.WriteLine(this.Name);
         }
     }
 }

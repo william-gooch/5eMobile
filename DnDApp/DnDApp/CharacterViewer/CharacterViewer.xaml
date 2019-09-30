@@ -40,12 +40,12 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <components:AbilityScore Grid.Row="0" Grid.Column="0" />
-                <components:AbilityScore Grid.Row="1" Grid.Column="0" />
-                <components:AbilityScore Grid.Row="2" Grid.Column="0" />
-                <components:AbilityScore Grid.Row="0" Grid.Column="1" />
-                <components:AbilityScore Grid.Row="1" Grid.Column="1" />
-                <components:AbilityScore Grid.Row="2" Grid.Column="1" />
+                <components:AbilityScoreView Name="Strength"     Score="20" Modifier="4" Grid.Row="0" Grid.Column="0" />
+                <components:AbilityScoreView Name="Dexterity"    Score="20" Modifier="4" Grid.Row="0" Grid.Column="1" />
+                <components:AbilityScoreView Name="Constitution" Score="20" Modifier="4" Grid.Row="1" Grid.Column="0" />
+                <components:AbilityScoreView Name="Intelligence" Score="20" Modifier="4" Grid.Row="1" Grid.Column="1" />
+                <components:AbilityScoreView Name="Wisdom"       Score="20" Modifier="4" Grid.Row="2" Grid.Column="0" />
+                <components:AbilityScoreView Name="Charisma"     Score="20" Modifier="4" Grid.Row="2" Grid.Column="1" />
             </Grid>
         </Grid>
     </ContentPage.Content>

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DnDApp.Components.AbilityScoreView">
+             x:Class="DnDApp.Components.AbilityScoreView"
+             x:Name="this">
     <ContentView.Content>
-        <Grid Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
+        <Grid BindingContext="{x:Reference this}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="10" />
@@ -17,12 +18,12 @@
 
             <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3">
                 <StackLayout>
-                    <Label VerticalOptions="Start" HorizontalOptions="Center" FontSize="14">Strength</Label>
-                    <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="35">20</Label>
+                    <Label VerticalOptions="Start" HorizontalOptions="Center" FontSize="14" Text="{Binding Name}" />
+                    <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="35" Text="{Binding Score}"/>
                 </StackLayout>
             </Frame>
             <Frame Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1">
-                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="10">+5</Label>
+                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="10" Text="{Binding Modifier}" />
             </Frame>
         </Grid>
     </ContentView.Content>
