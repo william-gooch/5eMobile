@@ -16,5 +16,7 @@
     
     <!-- Other Settings -->
     <x:Double x:Key="BorderWidth">7</x:Double>
+    <Thickness x:Key="BorderThickness">7,7,7,7</Thickness>
     <x:Int32 x:Key="CornerRadius">20</x:Int32>
+    <x:Single x:Key="CornerRadiusF">20</x:Single>
 </ResourceDictionary>

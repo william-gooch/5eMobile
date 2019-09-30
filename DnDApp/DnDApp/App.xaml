@@ -16,10 +16,20 @@
         <Style TargetType="Button">
             <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
             <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
-            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontSize" Value="36" />
             <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
             <Setter Property="BorderWidth" Value="{DynamicResource BorderWidth}" />
             <Setter Property="CornerRadius" Value="{DynamicResource CornerRadius}" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="CornerRadius" Value="{DynamicResource CornerRadiusF}" />
+            <Setter Property="Padding" Value="5,5,5,5" />
         </Style>
     </Application.Resources>
 </Application>
