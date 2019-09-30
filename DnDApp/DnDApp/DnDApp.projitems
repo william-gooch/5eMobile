@@ -19,7 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CharacterViewer\CharacterViewer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Components\AbilityScore.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Components\AbilityScoreView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
@@ -39,7 +39,7 @@
       <DependentUpon>CharacterViewer.xaml</DependentUpon>
     </Compile>
     <Compile Update="C:\Users\William\Programming\school\DnDApp\DnDApp\DnDApp\Components\AbilityScore.xaml.cs">
-      <DependentUpon>AbilityScore.xaml</DependentUpon>
+      <DependentUpon>AbilityScoreView.xaml</DependentUpon>
     </Compile>
     <Compile Update="C:\Users\William\Programming\school\DnDApp\DnDApp\DnDApp\Themes\DarkTheme.xaml.cs">
       <DependentUpon>DarkTheme.xaml</DependentUpon>
@@ -54,7 +54,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Components\AbilityScore.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Components\AbilityScoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

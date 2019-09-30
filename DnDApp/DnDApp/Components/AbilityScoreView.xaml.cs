@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DnDApp.Components
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AbilityScore : ContentView
+    public partial class AbilityScoreView : ContentView
     {
-        public AbilityScore()
+        public AbilityScoreView()
         {
             InitializeComponent();
         }
