@@ -7,24 +7,39 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using DnDEngine.Character;
 using DnDEngine.Utilities;
+using System.ComponentModel;
 
 namespace DnDApp.CharacterViewer
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterViewer : ContentPage
     {
-        private AbilityScores abilityScores = new AbilityScores(20, 19, 18, 17, 16, 15);
 
-        public AbilityScores AbilityScores
-        {
-            get { return abilityScores; }
-            set { abilityScores = value; }
-        }
-
-        public CharacterViewer()
+        public CharacterViewer(PlayerCharacter character)
         {
             InitializeComponent();
+            BindingContext = new CharacterViewerModel { Character = character };
         }
+    }
+
+    public class CharacterViewerModel : BindableObject
+    {
+        private PlayerCharacter character;
+        public PlayerCharacter Character
+        {
+            get { return character; }
+            set { character = value; OnPropertyChanged("Character"); }
+        }
+
+        public AbilityScores AbilityScores => Character.BaseAbilityScores;
+        public string Name => Character.Name;
+        public string Race => Character.Race.Name;
+        public string Class => Character.Class.Name;
+        public string Background => Character.Background.Name;
+        public int ArmorClass => Character.ArmorClass;
+
+        public string RaceClassText => $"{Race} {Class} (1)";
     }
 }
