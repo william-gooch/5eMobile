@@ -19,6 +19,12 @@ namespace DnDEngine.Character
         // A PC's max hit points is just the maximum roll of their hit dice (at level 1)
         public override int MaximumHitPoints => Class.HitDice.Max; // TODO: include leveling up
 
+        public override Dictionary<Skill, int> SkillProficiencies {
+            get => (Dictionary<Skill, int>) base.SkillProficiencies
+                .Concat(Class.SkillProficiencies);
+            set => base.SkillProficiencies = value;
+        }
+
         public CharacterRace Race { get; }
         public CharacterClass Class { get; }
         public CharacterBackground Background { get; }

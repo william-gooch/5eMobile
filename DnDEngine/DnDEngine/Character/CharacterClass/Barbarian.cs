@@ -14,7 +14,7 @@ namespace DnDEngine.Character
 
             public override Roll HitDice { get; } = Roll.D(12);
 
-            public override Skills SkillProficiencies => throw new NotImplementedException();
+            public override Dictionary<Skill, int> SkillProficiencies => throw new NotImplementedException();
             public override SavingThrows SavingThrowProficiencies { get; } = SavingThrows.Strength | SavingThrows.Constitution;
 
             public override List<CharacterTrait> CharacterTraits => new List<CharacterTrait> {

@@ -18,7 +18,10 @@ namespace DnDEngine.Character
 
         public abstract Roll HitDice { get; }
 
-        public abstract Skills SkillProficiencies { get; }
+        /// <summary>
+        /// The number of levels of proficiency a character has in each skill.
+        /// </summary>
+        public abstract Dictionary<Skill,int> SkillProficiencies { get; }
         public abstract SavingThrows SavingThrowProficiencies { get; }
 
         public abstract List<CharacterTrait> CharacterTraits { get; }

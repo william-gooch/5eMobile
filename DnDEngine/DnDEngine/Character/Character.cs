@@ -17,6 +17,11 @@ namespace DnDEngine.Character
 
         public AbilityScores BaseAbilityScores { get; set; }
 
+        /// <summary>
+        /// The number of levels of proficiency that a character has in each skill.
+        /// </summary>
+        public virtual Dictionary<Skill, int> SkillProficiencies { get; set; } = new Dictionary<Skill, int> ();
+
         public virtual int ArmorClass { get; }
         public virtual int MaximumHitPoints { get; }
 
