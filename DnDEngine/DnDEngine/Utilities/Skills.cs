@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DnDEngine.Utilities
@@ -13,8 +14,7 @@ namespace DnDEngine.Utilities
     [Flags]
     public enum Skills
     {
-        None = 0,
-        Acrobatics = 1 << 0,
+        Acrobatics      = 1 << 0,
         Animal_Handling = 1 << 1,
         Arcana          = 1 << 2,
         Athletics       = 1 << 3,
@@ -31,13 +31,19 @@ namespace DnDEngine.Utilities
         Religion        = 1 << 14,
         Sleight_Of_Hand = 1 << 15,
         Stealth         = 1 << 16,
-        Survival        = 1 << 17,
+        Survival        = 1 << 17
+    }
 
-        Strength = Athletics,
-        Dexterity = Acrobatics | Sleight_Of_Hand | Stealth,
-        Constitution = None,
-        Intelligence = Arcana | History | Nature | Religion,
-        Wisdom = Animal_Handling | Insight | Medicine | Perception | Survival,
-        Charisma = Deception | Intimidation | Performance | Persuasion
+    public static class EnumExtensions
+    {
+        public static Dictionary<string, bool> GetFlags(this Enum flags)
+        {
+            return (from Enum flag
+                    in Enum.GetValues(flags.GetType())
+                    select new {
+                        Key = Enum.GetName(flags.GetType(), flag),
+                        Value = flags.HasFlag(flag)
+                    }).ToDictionary(t => t.Key, t => t.Value);
+        }
     }
 }
