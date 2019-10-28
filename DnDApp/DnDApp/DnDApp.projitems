@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Components\AbilityScoreView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Components\SkillView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -41,6 +44,9 @@
     <Compile Update="C:\Users\William\Programming\school\DnDApp\DnDApp\DnDApp\Components\AbilityScore.xaml.cs">
       <DependentUpon>AbilityScoreView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="C:\Users\William\Programming\school\DnDApp\DnDApp\DnDApp\Components\SkillView.xaml.cs">
+      <DependentUpon>SkillView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="C:\Users\William\Programming\school\DnDApp\DnDApp\DnDApp\Themes\DarkTheme.xaml.cs">
       <DependentUpon>DarkTheme.xaml</DependentUpon>
     </Compile>
@@ -55,6 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Components\AbilityScoreView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Components\SkillView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

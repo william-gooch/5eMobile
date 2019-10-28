@@ -34,6 +34,16 @@ namespace DnDEngine.Utilities
         Survival        = 1 << 17
     }
 
+    public static class SkillTypes
+    {
+        public static Skills Strength = Skills.Athletics;
+        public static Skills Dexterity = Skills.Acrobatics | Skills.Sleight_Of_Hand | Skills.Stealth;
+        public static Skills Constitution = 0;
+        public static Skills Intelligence = Skills.Arcana | Skills.History | Skills.Investigation | Skills.Nature | Skills.Religion;
+        public static Skills Wisdom = Skills.Animal_Handling | Skills.Insight | Skills.Medicine | Skills.Perception | Skills.Survival;
+        public static Skills Charisma = Skills.Deception | Skills.Intimidation | Skills.Performance | Skills.Persuasion;
+    }
+
     public static class EnumExtensions
     {
         public static Dictionary<string, bool> GetFlags(this Enum flags)
