@@ -36,27 +36,36 @@ namespace DnDEngine.Character
 
         public Dictionary<string,Tuple<int,int>> GetSkills()
         {
-            return (from item in Enum.GetNames(typeof(Skills)) select item).ToDictionary(name => name, name => Tuple.Create(GetSkillScore(name), (int)Math.Floor((double)(GetSkillScore(name)-10)/2)));
+            return (from item in Enum.GetNames(typeof(Skills))
+                    select item).ToDictionary(
+                        name => name, // key
+                        name => Tuple.Create(
+                            GetSkillScore(name),
+                            (int)Math.Floor( (double)(GetSkillScore(name)-10)/2 )
+                        ) // value
+                    );
         }
 
         public int GetSkillScore(string skillName)
         {
-            Skills skillValue = (Skills) Enum.Parse(typeof(Skills), skillName);
+            Skills skillValue = (Skills)Enum.Parse(typeof(Skills), skillName);
             int bonus = (skillValue & SkillProficiencies) != 0 ? ProficiencyBonus : 0;
-            if ((skillValue & SkillTypes.Strength) != 0)
+
+            if ((skillValue & SkillTypes.Strength) != 0) {
                 return BaseAbilityScores.Strength + bonus;
-            else if ((skillValue & SkillTypes.Dexterity) != 0)
+            } else if ((skillValue & SkillTypes.Dexterity) != 0) {
                 return BaseAbilityScores.Dexterity + bonus;
-            else if ((skillValue & SkillTypes.Constitution) != 0)
+            } else if ((skillValue & SkillTypes.Constitution) != 0) {
                 return BaseAbilityScores.Constitution + bonus;
-            else if ((skillValue & SkillTypes.Intelligence) != 0)
+            } else if ((skillValue & SkillTypes.Intelligence) != 0) {
                 return BaseAbilityScores.Intelligence + bonus;
-            else if ((skillValue & SkillTypes.Wisdom) != 0)
+            } else if ((skillValue & SkillTypes.Wisdom) != 0) {
                 return BaseAbilityScores.Wisdom + bonus;
-            else if ((skillValue & SkillTypes.Charisma) != 0)
+            } else if ((skillValue & SkillTypes.Charisma) != 0) {
                 return BaseAbilityScores.Charisma + bonus;
-            else
+            } else {
                 return 0;
+            }
         }
 
         /// <summary>
