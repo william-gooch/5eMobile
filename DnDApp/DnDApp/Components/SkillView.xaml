@@ -7,25 +7,16 @@
              x:Class="DnDApp.Components.SkillView"
              x:Name="this">
   <ContentView.Content>
-        <Grid ColumnSpacing="0" BindingContext="{x:Reference this}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="30" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
-
-            <Frame Grid.Row="0" Grid.Column="0" Padding="15,0,0,0">
+        <StackLayout Orientation="Horizontal" BindingContext="{x:Reference this}">
+            <Frame Padding="15,0,0,0" HorizontalOptions="FillAndExpand">
                 <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="15" Text="{Binding Skill}" />
             </Frame>
-            <Frame Grid.Row="0" Grid.Column="1">
+            <Frame WidthRequest="15" HorizontalOptions="End">
                 <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Score}" />
             </Frame>
-            <Frame Grid.Row="0" Grid.Column="2">
+            <Frame WidthRequest="15" HorizontalOptions="End">
                 <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Modifier}" />
             </Frame>
-        </Grid>
+        </StackLayout>
   </ContentView.Content>
 </ContentView>

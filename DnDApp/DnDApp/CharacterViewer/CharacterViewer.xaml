@@ -40,13 +40,13 @@
                             JustifyContent="SpaceAround" AlignItems="Start">
                     <Grid Margin="10,10,10,10" WidthRequest="200" HeightRequest="400">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="120" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
 
                         <components:AbilityScoreView Name="Strength"
