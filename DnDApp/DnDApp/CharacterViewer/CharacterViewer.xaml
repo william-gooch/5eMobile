@@ -30,7 +30,7 @@
                     </Frame>
                     <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
                         <StackLayout>
-                            <Label HorizontalOptions="Center" VerticalOptions="Start" FontSize="14">Armor Class</Label>
+                            <Label HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" FontSize="12">Armor Class</Label>
                             <Label HorizontalOptions="Center" VerticalOptions="FillAndExpand" FontSize="35" Text="{Binding Character.ArmorClass}"/>
                         </StackLayout>
                     </Frame>
