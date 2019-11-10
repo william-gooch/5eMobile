@@ -3,14 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:DnDApp.CharacterViewer"
              mc:Ignorable="d"
              x:Class="DnDApp.CharacterViewer.CharacterTraits"
+             x:Name="this"
              Title="Traits">
+    <ContentPage.BindingContext>
+        <local:CharacterTraitsModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <CollectionView ItemsSource="{Binding Character.CharacterTraits}" Margin="10,10,10,10">
+            <CollectionView.ItemsLayout>
+                <ListItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="15,15,15,15">
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Description}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>
