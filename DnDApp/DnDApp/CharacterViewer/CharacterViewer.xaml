@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:DnDApp.CharacterViewer"
              xmlns:character="clr-namespace:DnDEngine.Character;assembly=DnDEngine"
              x:Class="DnDApp.CharacterViewer.CharacterViewer"
-             x:Name="this">
+             x:Name="this"
+             Title="Summary">
     <ContentPage.BindingContext>
         <local:CharacterViewerModel />
     </ContentPage.BindingContext>
