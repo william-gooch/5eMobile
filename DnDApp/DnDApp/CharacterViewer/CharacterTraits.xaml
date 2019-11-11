@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <CollectionView ItemsSource="{Binding Character.CharacterTraits}" Margin="10,10,10,10">
             <CollectionView.ItemsLayout>
-                <ListItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
