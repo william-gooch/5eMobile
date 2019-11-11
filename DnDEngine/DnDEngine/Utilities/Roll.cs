@@ -9,16 +9,31 @@ namespace DnDEngine.Utilities
     /// </summary>
     public class Roll
     {
-        private int numberOfSides;
-        private int numberOfDice;
-        private int modifier;
+        public int NumberOfSides { get; private set; }
+        public int NumberOfDice { get; private set; }
+        public int Modifier { get; private set; }
 
         private static Random rnd = new Random();
 
-        public int value;
+        private int value;
+        public int Value
+        {
+            get
+            {
+                if(value == 0)
+                {
+                    DoRoll();
+                }
+                return value;
+            }
+            private set
+            {
+                this.value = value;
+            }
+        }
 
-        public int Max => (numberOfSides * numberOfDice) + modifier;
-        public int Avg => ((int)Math.Ceiling((double) numberOfSides / 2) * numberOfDice) + modifier;
+        public int Max => (NumberOfSides * NumberOfDice) + Modifier;
+        public int Avg => ((int)Math.Ceiling((double) NumberOfSides / 2) * NumberOfDice) + Modifier;
 
         /// <summary>
         /// This private constructor is used within the class to make a new Roll instance.
@@ -28,9 +43,9 @@ namespace DnDEngine.Utilities
         /// <param name="modifier">A modifier to add after the roll.</param>
         private Roll(int numberOfSides, int numberOfDice, int modifier)
         {
-            this.numberOfSides = numberOfSides;
-            this.numberOfDice = numberOfDice;
-            this.modifier = modifier;
+            this.NumberOfSides = numberOfSides;
+            this.NumberOfDice = numberOfDice;
+            this.Modifier = modifier;
         }
 
         /// <summary>
@@ -54,7 +69,7 @@ namespace DnDEngine.Utilities
         /// <returns>The result of the operation.</returns>
         public static Roll operator +(Roll roll, int modifier)
         {
-            return new Roll(roll.numberOfSides, roll.numberOfDice, roll.modifier + modifier);
+            return new Roll(roll.NumberOfSides, roll.NumberOfDice, roll.Modifier + modifier);
         }
 
         /// <summary>
@@ -66,7 +81,7 @@ namespace DnDEngine.Utilities
         /// <returns>The result of the operation.</returns>
         public static Roll operator -(Roll roll, int modifier)
         {
-            return new Roll(roll.numberOfSides, roll.numberOfDice, roll.modifier - modifier);
+            return new Roll(roll.NumberOfSides, roll.NumberOfDice, roll.Modifier - modifier);
         }
 
         /// <summary>
@@ -79,14 +94,14 @@ namespace DnDEngine.Utilities
         /// <returns>The result of the operation.</returns>
         public static Roll operator *(int numberOfDice, Roll roll)
         {
-            return new Roll(roll.numberOfSides, roll.numberOfDice * numberOfDice, roll.modifier);
+            return new Roll(roll.NumberOfSides, roll.NumberOfDice * numberOfDice, roll.Modifier);
         }
 
         public override string ToString()
         {
-            var rollString = numberOfDice + "d" + numberOfSides;
-            if (modifier > 0) rollString += "+" + modifier;
-            if (modifier < 0) rollString += "-" + -modifier;
+            var rollString = NumberOfDice + "d" + NumberOfSides;
+            if (Modifier > 0) rollString += "+" + Modifier;
+            if (Modifier < 0) rollString += "-" + -Modifier;
             return rollString;
         }
 
@@ -98,11 +113,11 @@ namespace DnDEngine.Utilities
         public int DoRoll()
         {
             int total = 0;
-            for(int i = 0; i < numberOfDice; i++)
+            for(int i = 0; i < NumberOfDice; i++)
             {
-                total += rnd.Next(1, numberOfSides + 1);
+                total += rnd.Next(1, NumberOfSides + 1);
             }
-            total += modifier;
+            total += Modifier;
             value = total;
             return total;
         }
