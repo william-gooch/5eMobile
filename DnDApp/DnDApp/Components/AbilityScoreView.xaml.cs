@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DnDEngine.Utilities;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -41,6 +41,15 @@ namespace DnDApp.Components
             InitializeComponent();
 
             Console.WriteLine(this.Name);
+        }
+
+        async void OnTapped(object sender, EventArgs args)
+        {
+            DiceRoll rollPage = new DiceRoll
+            {
+                BindingContext = Roll.D(20) + Modifier
+            };
+            await Navigation.PushModalAsync(rollPage);
         }
     }
 }

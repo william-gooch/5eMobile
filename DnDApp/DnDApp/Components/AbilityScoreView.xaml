@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DnDApp.Components.AbilityScoreView"
              x:Name="this">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
     <ContentView.Content>
         <Grid BindingContext="{x:Reference this}">
             <Grid.RowDefinitions>
