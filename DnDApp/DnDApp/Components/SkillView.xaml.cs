@@ -46,7 +46,7 @@ namespace DnDApp.Components
         {
             DiceRoll rollPage = new DiceRoll
             {
-                BindingContext = Roll.D(20) + Modifier,
+                Roll = Roll.D(20) + Modifier,
                 Text = $"{Skill} check:"
             };
             await Navigation.PushModalAsync(rollPage);

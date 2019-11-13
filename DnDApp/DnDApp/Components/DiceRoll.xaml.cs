@@ -15,6 +15,14 @@ namespace DnDApp.Components
             set { SetValue(TextProperty, value); }
         }
 
+        public static readonly BindableProperty RollProperty =
+            BindableProperty.Create("Roll", typeof(Roll), typeof(DiceRoll));
+        public Roll Roll
+        {
+            get { return (Roll)GetValue(RollProperty); }
+            set { SetValue(RollProperty, value); }
+        }
+
         public DiceRoll()
         {
             InitializeComponent();
@@ -23,6 +31,12 @@ namespace DnDApp.Components
         void OnClose(object sender, EventArgs args)
         {
             Navigation.PopModalAsync();
+        }
+
+        void OnReroll(object sender, EventArgs args)
+        {
+            Roll.DoRoll();
+            OnPropertyChanged("Roll");
         }
     }
 }

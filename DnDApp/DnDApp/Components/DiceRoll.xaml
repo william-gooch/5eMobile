@@ -5,11 +5,12 @@
              x:Class="DnDApp.Components.DiceRoll"
              x:Name="this">
     <ContentPage.Content>
-        <StackLayout Padding="20,20,20,20">
-            <Label Text="{Binding Source={x:Reference this}, Path=Text}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" />
+        <StackLayout Padding="20,20,20,20" BindingContext="{x:Reference this}">
+            <Label Text="{Binding Text}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" />
             <Frame HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20,20,20,20">
-                <Label Text="{Binding Value}" FontSize="50" />
+                <Label Text="{Binding Roll.Value}" FontSize="50" />
             </Frame>
+            <Button Text="Re-roll" Clicked="OnReroll" />
             <Button Text="Close" Clicked="OnClose" />
         </StackLayout>
     </ContentPage.Content>
