@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="DnDApp.Components.SkillView"
              x:Name="this">
-  <ContentView.Content>
+    <ContentView.Content>
         <StackLayout Orientation="Horizontal" BindingContext="{x:Reference this}">
             <Frame Padding="15,0,0,0" HorizontalOptions="FillAndExpand">
                 <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="15" Text="{Binding Skill}" />
@@ -18,5 +18,5 @@
                 <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Modifier}" />
             </Frame>
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>
