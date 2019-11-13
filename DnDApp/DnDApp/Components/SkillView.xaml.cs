@@ -41,5 +41,15 @@ namespace DnDApp.Components
         {
             InitializeComponent();
         }
+
+        async public void OnTapped (object sender, EventArgs args)
+        {
+            DiceRoll rollPage = new DiceRoll
+            {
+                BindingContext = Roll.D(20) + Modifier,
+                Text = $"{Skill} check:"
+            };
+            await Navigation.PushModalAsync(rollPage);
+        }
     }
 }

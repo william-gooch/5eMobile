@@ -6,6 +6,9 @@
              mc:Ignorable="d"
              x:Class="DnDApp.Components.SkillView"
              x:Name="this">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" BindingContext="{x:Reference this}">
             <Frame Padding="15,0,0,0" HorizontalOptions="FillAndExpand">

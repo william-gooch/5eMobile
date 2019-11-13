@@ -47,7 +47,8 @@ namespace DnDApp.Components
         {
             DiceRoll rollPage = new DiceRoll
             {
-                BindingContext = Roll.D(20) + Modifier
+                BindingContext = Roll.D(20) + Modifier,
+                Text = $"{Name} check:"
             };
             await Navigation.PushModalAsync(rollPage);
         }
