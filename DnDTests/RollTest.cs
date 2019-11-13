@@ -12,8 +12,8 @@ namespace DnDTests
         {
             var roll = Roll.D(20);
             roll.DoRoll();
-            Assert.IsInstanceOfType(roll.value, typeof(int));
-            Console.WriteLine(roll.value);
+            Assert.IsInstanceOfType(roll.Value, typeof(int));
+            Console.WriteLine(roll.Value);
         }
 
         [TestMethod]
