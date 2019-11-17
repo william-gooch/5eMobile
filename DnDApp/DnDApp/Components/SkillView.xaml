@@ -5,20 +5,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="DnDApp.Components.SkillView"
-             x:Name="this">
+             x:Name="this"
+             AutomationId="SkillView">
     <ContentView.GestureRecognizers>
         <TapGestureRecognizer Tapped="OnTapped" />
     </ContentView.GestureRecognizers>
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" BindingContext="{x:Reference this}">
             <Frame Padding="15,0,0,0" HorizontalOptions="FillAndExpand">
-                <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="15" Text="{Binding Skill}" />
+                <Label AutomationId="Name" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="15" Text="{Binding Skill}" />
             </Frame>
             <Frame WidthRequest="15" HorizontalOptions="End">
-                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Score}" />
+                <Label AutomationId="Score" VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Score}" />
             </Frame>
             <Frame WidthRequest="15" HorizontalOptions="End">
-                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Modifier}" />
+                <Label AutomationId="Modifier"  VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" Text="{Binding Modifier}" />
             </Frame>
         </StackLayout>
     </ContentView.Content>

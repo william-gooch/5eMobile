@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DnDApp.Components.AbilityScoreView"
-             x:Name="this">
+             x:Name="this"
+             AutomationId="AbilityScoreView">
     <ContentView.GestureRecognizers>
         <TapGestureRecognizer Tapped="OnTapped" />
     </ContentView.GestureRecognizers>
@@ -22,10 +23,16 @@
 
             <Frame Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3">
             </Frame>
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  VerticalOptions="Center" HorizontalOptions="Center" FontSize="14" Text="{Binding Name}" />
-            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" FontSize="35" Text="{Binding Score}"/>
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  VerticalOptions="Center"
+                   HorizontalOptions="Center" FontSize="14" Text="{Binding Name}"
+                   AutomationId="Name"/>
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center"
+                   HorizontalOptions="Center" FontSize="35" Text="{Binding Score}"
+                   AutomationId="Score"/>
             <Frame Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1">
-                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="10" Text="{Binding Modifier}" />
+                <Label VerticalOptions="Center" HorizontalOptions="Center"
+                       FontSize="10" Text="{Binding Modifier}"
+                       AutomationId="Modifier"/>
             </Frame>
         </Grid>
     </ContentView.Content>
