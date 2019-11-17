@@ -42,5 +42,31 @@ namespace DnDUITests
                     .Child().Text("")
             ));
         }
+
+        [Test]
+        public void CharacterDisplaysSkills()
+        {
+            app.Tap(c => c.Marked("Characters"));
+            Assert.IsEmpty(app.Query(
+                c => c.Marked("SkillView")
+                    .Child().Text("")
+            ));
+        }
+
+        [Test]
+        public void CharacterDisplaysTraits()
+        {
+            app.Tap(c => c.Marked("Characters"));
+            app.Tap(c => c.Marked("Traits"));
+
+            Assert.IsNotEmpty(app.Query(
+                c => c.All().Marked("TraitsView")
+            ));
+
+            Assert.IsEmpty(app.Query(
+                c => c.All().Marked("TraitsView")
+                .Child().Text("")
+            ));
+        }
     }
 }

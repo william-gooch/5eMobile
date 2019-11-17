@@ -18,10 +18,10 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="15,15,15,15">
+                    <Frame AutomationId="TraitsView" Padding="15,15,15,15">
                         <StackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Description}" />
+                            <Label AutomationId="Name" Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label AutomationId="Description" Text="{Binding Description}" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
