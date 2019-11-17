@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DnDApp.Components"
              x:Class="DnDApp.Components.DiceRoll"
-             x:Name="this">
+             x:Name="this"
+             AutomationId="DiceRoll">
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" BindingContext="{x:Reference this}">
-            <Label Text="{Binding Text}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" />
+            <Label AutomationId="Description" Text="{Binding Text}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" />
             <Frame HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20,20,20,20">
-                <Label Text="{Binding Roll.Value}" FontSize="50" />
+                <Label AutomationId="Result" Text="{Binding Roll.Value}" FontSize="50" />
             </Frame>
             <Button Text="Re-roll" Clicked="OnReroll" />
             <Button Text="Close" Clicked="OnClose" />
