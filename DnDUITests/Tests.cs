@@ -32,5 +32,15 @@ namespace DnDUITests
             Assert.IsNotEmpty(app.Query(c => c.Marked("Maps")));
             Assert.IsNotEmpty(app.Query(c => c.Marked("Games")));
         }
+
+        [Test]
+        public void CharacterDisplaysAbilityScores()
+        {
+            app.Tap(c => c.Marked("Characters"));
+            Assert.IsEmpty(app.Query(
+                c => c.Marked("AbilityScoreView")
+                    .Child().Text("")
+            ));
+        }
     }
 }
