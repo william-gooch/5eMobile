@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "636642713023",
+    "firebase_url": "https://a-level-dnd.firebaseio.com",
+    "project_id": "a-level-dnd",
+    "storage_bucket": "a-level-dnd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636642713023:android:7f4655f2d5d7bb0aba550a",
+        "android_client_info": {
+          "package_name": "com.woochy.DnDApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636642713023-m5l3o36s5545q42n3tr8lc7vnn2enqck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7td3spIsVtfGjAEaQSyB3ty45pE6ULCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636642713023-m5l3o36s5545q42n3tr8lc7vnn2enqck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

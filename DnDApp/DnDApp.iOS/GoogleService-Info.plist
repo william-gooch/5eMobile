@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>636642713023-6o2p88e012t253h3s9bjqf7uavd4to80.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.636642713023-6o2p88e012t253h3s9bjqf7uavd4to80</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB0cjuQmPpdRqWQgANeL_KqVTcNyWu7HNY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>636642713023</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.woochy.DnDApp</string>
+	<key>PROJECT_ID</key>
+	<string>a-level-dnd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>a-level-dnd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:636642713023:ios:a1de48b175810b3aba550a</string>
+	<key>DATABASE_URL</key>
+	<string>https://a-level-dnd.firebaseio.com</string>
+</dict>
+</plist>
