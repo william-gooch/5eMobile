@@ -29,6 +29,9 @@ namespace DnDApp.iOS
 
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+
+            Firebase.Core.App.Configure();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

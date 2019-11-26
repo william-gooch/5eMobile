@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Firebase;
 
 namespace DnDApp.Droid
 {
@@ -20,6 +21,9 @@ namespace DnDApp.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            FirebaseApp.InitializeApp(Application.Context);
+
             LoadApplication(new App());
         }
     }
