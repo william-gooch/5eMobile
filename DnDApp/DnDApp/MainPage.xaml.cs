@@ -19,9 +19,14 @@ namespace DnDApp
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void CharactersButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CharacterViewer.ViewCharacterPage(character));
+        }
+
+        private async void SignInButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AuthenticationPage());
         }
     }
 }

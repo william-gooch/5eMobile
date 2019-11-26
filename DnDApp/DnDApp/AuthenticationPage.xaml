@@ -6,10 +6,15 @@
              mc:Ignorable="d"
              x:Class="DnDApp.AuthenticationPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
+        <StackLayout Padding="10,10,10,10">
+            <Label Text="Log In or Sign Up" Margin="0,50,0,50"
                 HorizontalOptions="CenterAndExpand" />
+
+            <Entry HorizontalOptions="FillAndExpand" x:Name="EmailEntry"  Placeholder="E-mail" />
+            <Entry VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" />
+
+            <Button Text="Log In" x:Name="LogInButton" Clicked="LogInButton_Clicked" />
+            <Button Text="Sign Up" x:Name="SignUpButton" Clicked="SignUpButton_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

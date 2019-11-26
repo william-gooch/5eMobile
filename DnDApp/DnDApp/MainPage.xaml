@@ -8,13 +8,17 @@
         <Button Text="Characters"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"
-                Clicked="Button_Clicked"/>
+                Clicked="CharactersButton_Clicked"/>
         <Button Text="Maps"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"/>
         <Button Text="Games"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"/>
+        <Button Text="Sign In"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Clicked="SignInButton_Clicked"/>
     </StackLayout>
 
 </ContentPage>

@@ -9,10 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
+using DnDApp.Droid.Services;
 using DnDApp.Services;
 using Firebase.Auth;
 
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(AuthService))]
 namespace DnDApp.Droid.Services
 {
     class AuthService : IAuthService
