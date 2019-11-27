@@ -26,7 +26,15 @@ namespace DnDApp
             var email = ((Entry)FindByName("EmailEntry")).Text;
             var password = ((Entry)FindByName("PasswordEntry")).Text;
 
-            await auth.LogIn(email, password);
+            try
+            {
+                await auth.LogIn(email, password);
+            }
+            catch(Exception exception)
+            {
+                await DisplayAlert("Error", exception.Message, "Try Again");
+                return;
+            }
             await Navigation.PopAsync();
         }
 
@@ -34,7 +42,16 @@ namespace DnDApp
         {
             var email = ((Entry)FindByName("EmailEntry")).Text;
             var password = ((Entry)FindByName("PasswordEntry")).Text;
-            await auth.SignUp(email, password);
+
+            try
+            {
+                await auth.SignUp(email, password);
+            }
+            catch (Exception exception)
+            {
+                await DisplayAlert("Error", exception.Message, "Try Again");
+                return;
+            }
             await Navigation.PopAsync();
         }
     }
