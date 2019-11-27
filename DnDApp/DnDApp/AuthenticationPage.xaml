@@ -11,7 +11,8 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Entry HorizontalOptions="FillAndExpand" x:Name="EmailEntry"  Placeholder="E-mail" />
-            <Entry VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" />
+            <Entry VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"
+                   x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" />
 
             <Button Text="Log In" x:Name="LogInButton" Clicked="LogInButton_Clicked" />
             <Button Text="Sign Up" x:Name="SignUpButton" Clicked="SignUpButton_Clicked" />
