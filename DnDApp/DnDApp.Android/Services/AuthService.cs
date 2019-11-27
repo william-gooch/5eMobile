@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace DnDApp.Droid.Services
 {
     class AuthService : IAuthService
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public async Task<User> LogIn(string email, string password)
         {
             try
@@ -28,7 +31,8 @@ namespace DnDApp.Droid.Services
                 var uid = res.User.Uid;
                 var emailAddr = res.User.Email;
 
-                return new User { UID = uid, Email = emailAddr };
+                LoggedInUser = new User { UID = uid, Email = emailAddr };
+                return LoggedInUser;
             }
             catch (FirebaseAuthInvalidUserException e)
             {
@@ -50,7 +54,8 @@ namespace DnDApp.Droid.Services
                 var uid = res.User.Uid;
                 var emailAddr = res.User.Email;
 
-                return new User { UID = uid, Email = emailAddr };
+                LoggedInUser = new User { UID = uid, Email = emailAddr };
+                return LoggedInUser;
             }
             catch(FirebaseAuthWeakPasswordException e)
             {
@@ -69,18 +74,35 @@ namespace DnDApp.Droid.Services
             }
         }
 
+        public void LogOut()
+        {
+            FirebaseAuth.Instance.SignOut();
+            LoggedInUser = null;
+        }
+
+        private User _loggedInUser;
         public User LoggedInUser {
             get {
-                var firebaseUser = FirebaseAuth.Instance.CurrentUser;
-                if (firebaseUser == null)
+                if (_loggedInUser == null)
                 {
-                    return null;
+                    var firebaseUser = FirebaseAuth.Instance.CurrentUser;
+                    if (firebaseUser == null)
+                    {
+                        return null;
+                    }
+
+                    var uid = firebaseUser.Uid;
+                    var email = firebaseUser.Email;
+
+                    _loggedInUser = new User { UID = uid, Email = email };
                 }
+                return _loggedInUser;
+            }
 
-                var uid = firebaseUser.Uid;
-                var email = firebaseUser.Email;
-
-                return new User { UID = uid, Email = email };
+            private set
+            {
+                _loggedInUser = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoggedInUser"));
             }
         }
     }

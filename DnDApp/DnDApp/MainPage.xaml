@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DnDApp"
+             xmlns:services="clr-namespace:DnDApp.Services"
              x:Class="DnDApp.MainPage"
              x:Name="this">
-
+    <ContentPage.Resources>
+        <services:IsNullValueConverter x:Key="IsNullConverter" />
+    </ContentPage.Resources>
     <StackLayout Margin="20,20,20,20">
         <Button Text="Characters"
                 HorizontalOptions="Fill"
@@ -19,15 +22,28 @@
         <Button Text="Sign In"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                Clicked="SignInButton_Clicked">
+                Clicked="SignInButton_Clicked"
+                IsVisible="False">
             <Button.Triggers>
                 <DataTrigger TargetType="Button"
-                             Binding="{Binding Source={x:Reference this}, Path=IsLoggedIn}"
+                             Binding="{Binding Source={x:Reference this}, Path=Auth.LoggedInUser, Converter={StaticResource IsNullConverter}}"
                              Value="True">
-                    <Setter Property="IsVisible" Value="False" />
+                    <Setter Property="IsVisible" Value="True" />
                 </DataTrigger>
             </Button.Triggers>
         </Button>
+        <StackLayout Orientation="Horizontal" IsVisible="True">
+            <StackLayout.Triggers>
+                <DataTrigger TargetType="StackLayout"
+                             Binding="{Binding Source={x:Reference this}, Path=Auth.LoggedInUser, Converter={StaticResource IsNullConverter}}"
+                             Value="True">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </StackLayout.Triggers>
+            
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Logged in." />
+            <Button x:Name="LogOutButton" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Text="Log Out" Clicked="LogOutButton_Clicked"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

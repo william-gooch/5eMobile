@@ -45,6 +45,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Services\IAuthService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IsNullValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Themes\DarkTheme.xaml.cs">
       <SubType>Code</SubType>

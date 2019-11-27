@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DnDApp.Services
 {
-    interface IAuthService
+    public interface IAuthService : INotifyPropertyChanged
     {
         /// <summary>
         /// Sign up a new user with an email and a password.
@@ -22,6 +23,11 @@ namespace DnDApp.Services
         /// <param name="password">The password of the user.</param>
         /// <returns>The user that was logged in.</returns>
         Task<User> LogIn(string email, string password);
+
+        /// <summary>
+        /// Logs out the current user.
+        /// </summary>
+        void LogOut();
 
         /// <summary>
         /// Gets the currently logged in user, or null if there is no user logged in.

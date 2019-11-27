@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnDApp.Services
 {
-    class User
+    public class User
     {
         public string Email { get; set; }
         public string UID { get; set; }

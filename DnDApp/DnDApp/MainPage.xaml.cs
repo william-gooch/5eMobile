@@ -14,14 +14,14 @@ namespace DnDApp
             new PlayerCharacter("Jorgen Windhelm", new AbilityScores(20, 19, 18, 17, 16, 15),
                 new CharacterRace.Dragonborn(), new CharacterClass.Barbarian(), new CharacterBackground.Acolyte());
 
-        public bool IsLoggedIn => auth.LoggedInUser != null;
+        public bool IsLoggedIn => Auth.LoggedInUser != null;
 
-        IAuthService auth;
+        public IAuthService Auth { get; }
 
         public MainPage()
         {
             Title = "Dungeons and Dragons Companion";
-            auth = DependencyService.Get<IAuthService>();
+            Auth = DependencyService.Get<IAuthService>();
             InitializeComponent();
         }
 
@@ -33,6 +33,11 @@ namespace DnDApp
         private async void SignInButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AuthenticationPage());
+        }
+
+        private void LogOutButton_Clicked(object sender, EventArgs e)
+        {
+            Auth.LogOut();
         }
     }
 }
