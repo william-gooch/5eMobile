@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 
 using DnDEngine.Character;
 using DnDEngine.Utilities;
+using DnDApp.Services;
 
 namespace DnDApp
 {
@@ -13,9 +14,14 @@ namespace DnDApp
             new PlayerCharacter("Jorgen Windhelm", new AbilityScores(20, 19, 18, 17, 16, 15),
                 new CharacterRace.Dragonborn(), new CharacterClass.Barbarian(), new CharacterBackground.Acolyte());
 
+        public bool IsLoggedIn => auth.LoggedInUser != null;
+
+        IAuthService auth;
+
         public MainPage()
         {
             Title = "Dungeons and Dragons Companion";
+            auth = DependencyService.Get<IAuthService>();
             InitializeComponent();
         }
 

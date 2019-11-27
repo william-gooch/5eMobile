@@ -69,13 +69,19 @@ namespace DnDApp.Droid.Services
             }
         }
 
-        public User GetLoggedInUser()
-        {
-            var firebaseUser = FirebaseAuth.Instance.CurrentUser;
-            var uid = firebaseUser.Uid;
-            var email = firebaseUser.Email;
+        public User LoggedInUser {
+            get {
+                var firebaseUser = FirebaseAuth.Instance.CurrentUser;
+                if (firebaseUser == null)
+                {
+                    return null;
+                }
 
-            return new User { UID = uid, Email = email };
+                var uid = firebaseUser.Uid;
+                var email = firebaseUser.Email;
+
+                return new User { UID = uid, Email = email };
+            }
         }
     }
 }
