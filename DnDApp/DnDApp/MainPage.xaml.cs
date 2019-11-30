@@ -27,7 +27,7 @@ namespace DnDApp
 
         private async void CharactersButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CharacterViewer.ViewCharacterPage(character));
+            await Navigation.PushAsync(new CharacterViewer.CharacterList());
         }
 
         private async void SignInButton_Clicked(object sender, EventArgs e)

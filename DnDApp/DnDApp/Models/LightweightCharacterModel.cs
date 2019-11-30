@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DnDApp.Models
 {
-    class LightweightCharacterModel : DatabaseModel
+    public class LightweightCharacterModel : DatabaseModel
     {
         [MapTo("name")]
         public string Name { get; set; }
