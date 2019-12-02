@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +19,7 @@ namespace DnDApp.CharacterViewer
         public CharacterList()
         {
             InitializeComponent();
+            ((CharacterListViewModel)BindingContext).Navigation = this.Navigation;
             Task.Run(async () => {
                 var currentUser = DependencyService.Get<IAuthService>().LoggedInUser;
                 if (currentUser == null) return;
@@ -33,6 +34,21 @@ namespace DnDApp.CharacterViewer
 
     public class CharacterListViewModel : INotifyPropertyChanged
     {
+        public INavigation Navigation { get; set; }
+
+        public CharacterListViewModel()
+        {
+            CharacterTappedCommand = new Command<LightweightCharacterModel>(async (characterModel) =>
+            {
+                var playerCharacter = await DatabaseService.GetPlayerCharacter(
+                    DependencyService.Get<IAuthService>().LoggedInUser,
+                    characterModel);
+
+                await Navigation?.PushAsync(new ViewCharacterPage(playerCharacter));
+            });
+        }
+
+        public ICommand CharacterTappedCommand { get; set; }
 
         private ObservableCollection<LightweightCharacterModel> _characters;
         public ObservableCollection<LightweightCharacterModel> Characters {

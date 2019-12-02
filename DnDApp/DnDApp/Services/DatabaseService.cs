@@ -23,5 +23,17 @@ namespace DnDApp.Services
             var characters = documents.ToObjects<LightweightCharacterModel>();
             return characters;
         }
+
+        public static async Task<PlayerCharacter> GetPlayerCharacter(User user, LightweightCharacterModel characterModel)
+        {
+            // TODO: Actually implement this method properly
+            var character = new PlayerCharacter(characterModel.Name,
+                new AbilityScores(0,0,0,0,0,0),
+                new CharacterRace.Dragonborn(),
+                new CharacterClass.Barbarian(),
+                new CharacterBackground.Acolyte());
+
+            return character;
+        }
     }
 }

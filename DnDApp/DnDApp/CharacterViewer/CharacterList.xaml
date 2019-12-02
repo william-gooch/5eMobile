@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="DnDApp.CharacterViewer.CharacterList">
     <ContentPage.BindingContext>
-        <local:CharacterListViewModel />
+        <local:CharacterListViewModel x:Name="vm" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <CollectionView ItemsSource="{Binding Characters}">
@@ -16,14 +16,19 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10,10,10,10">
-                        <Label Text="{Binding Name}" FontSize="Large"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding RaceName}" />
-                            <Label Text="{Binding ClassName}" />
-                            <Label Text="{Binding BackgroundName}" />
+                    <Frame Padding="10,10,10,10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference vm}, Path=CharacterTappedCommand}" CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontSize="Large"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding RaceName}" />
+                                <Label Text="{Binding ClassName}" />
+                                <Label Text="{Binding BackgroundName}" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
