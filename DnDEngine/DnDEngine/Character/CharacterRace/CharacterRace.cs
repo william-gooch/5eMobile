@@ -10,16 +10,26 @@ namespace DnDEngine.Character
     /// Includes a name, a description, a size and speed, and
     /// some ability score modifier (not implemented yet)
     /// </summary>
-    public abstract partial class CharacterRace
+    public partial class CharacterRace
     {
-        public abstract string Name { get; }
-        public abstract string Description { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public abstract Size Size { get; }
-        public abstract int Speed { get; }
+        public Size Size { get; set; }
+        public int Speed { get; set; }
 
-        public abstract AbilityScores AbilityScoresMod { get; }
+        public AbilityScores AbilityScoresMod { get; set; }
 
-        public abstract List<CharacterTrait> CharacterTraits { get; }
+        public List<CharacterTrait> CharacterTraits { get; set; }
+
+        public CharacterRace Clone() => new CharacterRace
+        {
+            Name = Name,
+            Description = Description,
+            Size = Size,
+            Speed = Speed,
+            AbilityScoresMod = AbilityScoresMod,
+            CharacterTraits = new List<CharacterTrait>(CharacterTraits)
+        };
     }
 }

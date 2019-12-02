@@ -33,9 +33,9 @@ namespace DnDApp.CharacterViewer
                 {
                     Character = new PlayerCharacter("Jorgen Windhelm",
                         new AbilityScores(0, 0, 0, 0, 0, 0),
-                        new CharacterRace.Dragonborn(),
-                        new CharacterClass.Barbarian(),
-                        new CharacterBackground.Acolyte());
+                        CharacterRace.Dragonborn(),
+                        CharacterClass.Barbarian(),
+                        CharacterBackground.Acolyte());
                 }
                 return character;
             }

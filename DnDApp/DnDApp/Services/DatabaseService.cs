@@ -29,9 +29,9 @@ namespace DnDApp.Services
             // TODO: Actually implement this method properly
             var character = new PlayerCharacter(characterModel.Name,
                 new AbilityScores(0,0,0,0,0,0),
-                new CharacterRace.Dragonborn(),
-                new CharacterClass.Barbarian(),
-                new CharacterBackground.Acolyte());
+                CharacterRace.Dragonborn(),
+                CharacterClass.Barbarian(),
+                CharacterBackground.Acolyte());
 
             return character;
         }

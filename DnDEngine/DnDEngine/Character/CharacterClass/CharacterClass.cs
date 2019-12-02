@@ -11,22 +11,32 @@ namespace DnDEngine.Character
     /// and saving throw proficiencies.
     /// All of these are abstract and can be overridden.
     /// </summary>
-    public abstract partial class CharacterClass
+    public partial class CharacterClass
     {
-        public abstract string Name { get; }
-        public abstract string Description { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public abstract Roll HitDice { get; }
+        public Roll HitDice { get; set; }
 
-        public abstract Skills SkillProficiencies { get; }
-        public abstract SavingThrows SavingThrowProficiencies { get; }
+        public Skills SkillProficiencies { get; set; }
+        public SavingThrows SavingThrowProficiencies { get; set; }
 
-        public abstract List<CharacterTrait> CharacterTraits { get; }
+        public List<CharacterTrait> CharacterTraits { get; set; }
 
         /// <summary>
         /// This means that an instance of this can be initialized in the constructor for a
         /// child class.
         /// </summary>
         protected CharacterClass() { }
+
+        public CharacterClass Clone() => new CharacterClass
+        {
+            Name = Name,
+            Description = Description,
+            HitDice = HitDice,
+            SkillProficiencies = SkillProficiencies,
+            SavingThrowProficiencies = SavingThrowProficiencies,
+            CharacterTraits = new List<CharacterTrait>(CharacterTraits)
+        };
     }
 }

@@ -10,10 +10,6 @@ namespace DnDApp
 {
     public partial class MainPage : ContentPage
     {
-        private PlayerCharacter character =
-            new PlayerCharacter("Jorgen Windhelm", new AbilityScores(20, 19, 18, 17, 16, 15),
-                new CharacterRace.Dragonborn(), new CharacterClass.Barbarian(), new CharacterBackground.Acolyte());
-
         public bool IsLoggedIn => Auth.LoggedInUser != null;
 
         public IAuthService Auth { get; }

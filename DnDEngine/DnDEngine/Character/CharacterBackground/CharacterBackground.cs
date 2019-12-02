@@ -8,11 +8,18 @@ namespace DnDEngine.Character
     /// Describes a character's background.
     /// Includes a name and a description that can both be overridden.
     /// </summary>
-    public abstract partial class CharacterBackground
+    public partial class CharacterBackground
     {
-        public abstract string Name { get; }
-        public abstract string Description { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public abstract List<CharacterTrait> CharacterTraits { get; }
+        public List<CharacterTrait> CharacterTraits { get; set; }
+
+        public CharacterBackground Clone() => new CharacterBackground
+        {
+            Name = Name,
+            Description = Description,
+            CharacterTraits = new List<CharacterTrait>(CharacterTraits)
+        };
     }
 }
