@@ -16,7 +16,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10,10,10,10">
+                    <Frame AutomationId="CharacterCell" Padding="10,10,10,10">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference vm}, Path=CharacterTappedCommand}" CommandParameter="{Binding .}" />
                         </Frame.GestureRecognizers>

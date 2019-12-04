@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -26,17 +27,58 @@ namespace DnDUITests
         }
 
         [Test]
+        public void UserCanLogIn()
+        {
+            app.Tap(c => c.Marked("Sign In"));
+            app.Tap(c => c.Marked("E-mail"));
+            app.EnterText("william.gooch.wg@gmail.com");
+            app.Tap(c => c.Marked("Password"));
+            app.EnterText("password");
+
+            app.Tap(c => c.Marked("Log In"));
+            app.WaitForElement(c => c.Marked("Characters"));
+        }
+
+        [Test]
+        public void UserCanLogOut()
+        {
+            UserCanLogIn();
+
+            app.Tap(c => c.Marked("Log Out"));
+            app.WaitForElement(c => c.Marked("Sign In"));
+        }
+
+        [Test]
         public void MainMenuHasCorrectButtons()
         {
             Assert.IsNotEmpty(app.Query(c => c.Marked("Characters")));
             Assert.IsNotEmpty(app.Query(c => c.Marked("Maps")));
             Assert.IsNotEmpty(app.Query(c => c.Marked("Games")));
+            Assert.IsNotEmpty(app.Query(c => c.Marked("Sign In")));
+        }
+
+        [Test]
+        public void UserCanSelectCharacter()
+        {
+            UserCanLogIn();
+
+            app.Tap(c => c.Marked("Characters"));
+            app.WaitForElement(c => c.Marked("CharacterCell"));
+
+            Assert.IsEmpty(app.Query(c => c.Marked("CharacterCell").Child().Text("")));
+            app.Tap(c => c.Marked("CharacterCell"));
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            app.WaitForNoElement(c => c.Marked("CharacterCell"));
+            sw.Stop();
+            Console.WriteLine($"Request to the database took {sw.Elapsed.TotalSeconds}secs to execute");
         }
 
         [Test]
         public void CharacterDisplaysAbilityScores()
         {
-            app.Tap(c => c.Marked("Characters"));
+            UserCanSelectCharacter();
+            Assert.IsNotEmpty(app.Query(c => c.Marked("AbilityScoreView")));
             Assert.IsEmpty(app.Query(
                 c => c.Marked("AbilityScoreView")
                     .Child().Text("")
@@ -46,9 +88,10 @@ namespace DnDUITests
         [Test]
         public void CharacterDisplaysSkills()
         {
-            app.Tap(c => c.Marked("Characters"));
+            UserCanSelectCharacter();
+            Assert.IsNotEmpty(app.Query(c => c.All().Marked("SkillView")));
             Assert.IsEmpty(app.Query(
-                c => c.Marked("SkillView")
+                c => c.All().Marked("SkillView")
                     .Child().Text("")
             ));
         }
@@ -56,7 +99,7 @@ namespace DnDUITests
         [Test]
         public void CharacterDisplaysTraits()
         {
-            app.Tap(c => c.Marked("Characters"));
+            UserCanSelectCharacter();
             app.Tap(c => c.Marked("Traits"));
 
             Assert.IsNotEmpty(app.Query(
@@ -72,7 +115,8 @@ namespace DnDUITests
         [Test]
         public void CharacterRollsDice()
         {
-            app.Tap(c => c.Marked("Characters"));
+            UserCanSelectCharacter();
+
             // should tap the first ability score view, i.e. strength
             app.Tap(c => c.Marked("AbilityScoreView"));
             Assert.IsNotEmpty(app.Query(c => c.Marked("Result")));
