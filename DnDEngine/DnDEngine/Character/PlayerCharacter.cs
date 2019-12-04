@@ -19,9 +19,9 @@ namespace DnDEngine.Character
         // A PC's max hit points is just the maximum roll of their hit dice (at level 1)
         public override int MaximumHitPoints => Class.HitDice.Max; // TODO: include leveling up
 
-        public CharacterRace Race { get; }
-        public CharacterClass Class { get; }
-        public CharacterBackground Background { get; }
+        public CharacterRace Race { get; set; }
+        public CharacterClass Class { get; set; }
+        public CharacterBackground Background { get; set; }
 
         public override List<CharacterTrait> CharacterTraits
         {
@@ -33,6 +33,8 @@ namespace DnDEngine.Character
                     .Concat(Background.CharacterTraits).ToList();
             }
         }
+
+        public PlayerCharacter() { }
 
         /// <summary>
         /// Creates a new instance of a PlayerCharacter.

@@ -23,12 +23,6 @@ namespace DnDEngine.Character
 
         public List<CharacterTrait> CharacterTraits { get; set; }
 
-        /// <summary>
-        /// This means that an instance of this can be initialized in the constructor for a
-        /// child class.
-        /// </summary>
-        protected CharacterClass() { }
-
         public CharacterClass Clone() => new CharacterClass
         {
             Name = Name,

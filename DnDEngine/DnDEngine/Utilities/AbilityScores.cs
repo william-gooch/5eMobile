@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.CloudFirestore.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,12 +11,18 @@ namespace DnDEngine.Utilities
     /// </summary>
     public struct AbilityScores
     {
-        public int Strength { get; }
-        public int Dexterity { get; }
-        public int Constitution { get; }
-        public int Intelligence { get; }
-        public int Wisdom { get; }
-        public int Charisma { get; }
+        [MapTo("strength")]
+        public int Strength { get; set; }
+        [MapTo("dexterity")]
+        public int Dexterity { get; set; }
+        [MapTo("constitution")]
+        public int Constitution { get; set; }
+        [MapTo("intelligence")]
+        public int Intelligence { get; set; }
+        [MapTo("wisdom")]
+        public int Wisdom { get; set; }
+        [MapTo("charisma")]
+        public int Charisma { get; set; }
 
         // The modifier for a given ability score is the (score - 10) / 2 and rounded down.
         public int StrengthMod => (int)Math.Floor((double)(Strength - 10) / 2);

@@ -24,14 +24,69 @@ namespace DnDApp.Services
             return characters;
         }
 
+        public static async Task<List<CharacterTrait>> GetTraits(ICollectionReference traitsCollection)
+        {
+            var documents = await traitsCollection.GetDocumentsAsync();
+
+            var traits = (from doc in documents.Documents
+                          select new CharacterTrait((string)doc.Data["name"], (string)doc.Data["description"]));
+            return traits.ToList();
+        }
+
+        public static async Task<CharacterRace> GetRace(IDocumentReference raceReference)
+        {
+            var document = await raceReference.GetDocumentAsync();
+            var traits = await GetTraits(raceReference.GetCollection("traits"));
+
+            return new CharacterRace
+            {
+                Name = (string)document.Data["name"],
+                Description = (string)document.Data["description"],
+                // TODO: add size, speed, and ability score modifiers.
+                CharacterTraits = traits
+            };
+        }
+
+        public static async Task<CharacterClass> GetClass(IDocumentReference classReference)
+        {
+            var document = await classReference.GetDocumentAsync();
+            var traits = await GetTraits(classReference.GetCollection("traits"));
+
+            return new CharacterClass
+            {
+                Name = (string)document.Data["name"],
+                Description = (string)document.Data["description"],
+                // TODO: add hit dice and proficiencies.
+                CharacterTraits = traits
+            };
+        }
+
+        public static async Task<CharacterBackground> GetBackground(IDocumentReference backgroundReference)
+        {
+            var document = await backgroundReference.GetDocumentAsync();
+            var traits = await GetTraits(backgroundReference.GetCollection("traits"));
+
+            return new CharacterBackground
+            {
+                Name = (string)document.Data["name"],
+                Description = (string)document.Data["description"],
+                CharacterTraits = traits
+            };
+        }
+
         public static async Task<PlayerCharacter> GetPlayerCharacter(User user, LightweightCharacterModel characterModel)
         {
-            // TODO: Actually implement this method properly
-            var character = new PlayerCharacter(characterModel.Name,
-                new AbilityScores(0,0,0,0,0,0),
-                CharacterRace.Dragonborn(),
-                CharacterClass.Barbarian(),
-                CharacterBackground.Acolyte());
+            var characterRace = await GetRace(characterModel.RaceRef);
+            var characterClass = await GetClass(characterModel.ClassRef);
+            var characterBackground = await GetBackground(characterModel.BackgroundRef);
+
+            var document = await CrossCloudFirestore.Current.Instance
+                .GetDocument($"/users/{user.UID}/characters/{characterModel.UID}")
+                .GetDocumentAsync();
+            var character = document.ToObject<PlayerCharacter>();
+            character.Race = characterRace;
+            character.Class = characterClass;
+            character.Background = characterBackground;
 
             return character;
         }

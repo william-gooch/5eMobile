@@ -1,4 +1,5 @@
 ﻿using DnDEngine.Utilities;
+using Plugin.CloudFirestore.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,10 @@ namespace DnDEngine.Character
     /// </summary>
     public abstract class Character
     {
+        [MapTo("name")]
         public string Name { get; set; }
 
+        [MapTo("abilityScores")]
         public AbilityScores BaseAbilityScores { get; set; }
 
         public virtual int ArmorClass { get; }
