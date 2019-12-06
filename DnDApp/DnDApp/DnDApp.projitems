@@ -50,6 +50,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\DatabaseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LightweightCharacterModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tileset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DatabaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IAuthService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IsNullValueConverter.cs" />
