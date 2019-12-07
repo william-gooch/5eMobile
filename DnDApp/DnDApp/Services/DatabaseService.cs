@@ -90,5 +90,22 @@ namespace DnDApp.Services
 
             return character;
         }
+
+        public static async Task<Tileset> GetTileset(IDocumentReference tilesetRef)
+        {
+            var document = await tilesetRef.GetDocumentAsync();
+
+            Tileset tileset = document.ToObject<Tileset>();
+            return tileset;
+        }
+
+        public static async Task<Tilemap> GetTilemap(IDocumentReference tilemapRef)
+        {
+            var document = await tilemapRef.GetDocumentAsync();
+
+            Tilemap tilemap = document.ToObject<Tilemap>();
+            tilemap.Map = Tilemap.Reconstruct(tilemap.FlattenedMap, tilemap.Width, tilemap.Height);
+            return tilemap;
+        }
     }
 }
