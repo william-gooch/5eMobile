@@ -60,6 +60,14 @@ namespace DnDApp.Maps
             {
                 DrawTilemap(canvas);
             }
+            else
+            {
+                string loadingMessage = "Loading...";
+                var textPaint = new SKPaint { Color = Color.White.ToSKColor(), TextSize = 40 };
+                var textBounds = new SKRect();
+                textPaint.MeasureText(loadingMessage, ref textBounds);
+                canvas.DrawText(loadingMessage, info.Width / 2 - textBounds.Width / 2, info.Height / 2 - textBounds.Height / 2, textPaint);
+            }
         }
 
         public void DrawTilemap(SKCanvas canvas)
