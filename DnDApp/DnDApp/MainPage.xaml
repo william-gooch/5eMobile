@@ -15,7 +15,8 @@
                 Clicked="CharactersButton_Clicked"/>
         <Button Text="Maps"
                 HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand"/>
+                VerticalOptions="FillAndExpand"
+                Clicked="MapsButton_Clicked"/>
         <Button Text="Games"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"/>
