@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DnDApp.Models
 {
-    class Tilemap : DatabaseModel
+    public class Tilemap : DatabaseModel
     {
         [MapTo("width")]
         public int Width { get; set; }
@@ -14,8 +14,11 @@ namespace DnDApp.Models
         [MapTo("height")]
         public int Height { get; set; }
 
+        public int TileWidth { get; set; } = 64;
+        public int TileHeight { get; set; } = 64;
+
         [MapTo("map")]
-        public int[] FlattenedMap { get; set; }
+        public List<int> FlattenedMap { get; set; }
 
         [MapTo("tileset")]
         public IDocumentReference TilesetReference { get; set; }
@@ -41,7 +44,7 @@ namespace DnDApp.Models
             return flattened;
         }
 
-        public static int[,] Reconstruct(int[] flattenedMap, int width, int height)
+        public static int[,] Reconstruct(List<int> flattenedMap, int width, int height)
         {
             int[,] map = new int[height, width];
             int currentTile = 0;
