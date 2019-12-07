@@ -22,6 +22,8 @@ namespace DnDApp.Maps
         public static readonly BindableProperty TilemapProperty =
             BindableProperty.Create("Tilemap", typeof(Tilemap), typeof(MapView));
 
+        public (double x, double y) CurrentPan { get; set; }
+
         public Tilemap Tilemap
         {
             get => (Tilemap)GetValue(TilemapProperty);
@@ -39,6 +41,23 @@ namespace DnDApp.Maps
             canvasView = new SKCanvasView();
             canvasView.PaintSurface += OnPaintSurface;
             Content = canvasView;
+
+            var panGesture = new PanGestureRecognizer();
+            panGesture.PanUpdated += OnPanned;
+            GestureRecognizers.Add(panGesture);
+        }
+
+        private void OnPanned(object sender, PanUpdatedEventArgs e)
+        {
+            if(e.StatusType == GestureStatus.Running)
+            {
+                canvasView.TranslationX = CurrentPan.x + e.TotalX;
+                canvasView.TranslationY = CurrentPan.y + e.TotalY;
+            }
+            else if (e.StatusType == GestureStatus.Completed)
+            {
+                CurrentPan = (canvasView.TranslationX, canvasView.TranslationY);
+            }
         }
 
         public async void LoadTilemapFromDatabase()
@@ -54,7 +73,7 @@ namespace DnDApp.Maps
             SKSurface surface = args.Surface;
             SKCanvas canvas = surface.Canvas;
 
-            canvas.Clear(Color.Black.ToSKColor());
+            canvas.Clear(Color.Transparent.ToSKColor());
 
             if(Tilemap != null)
             {
