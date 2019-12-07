@@ -1,4 +1,5 @@
-﻿using Plugin.CloudFirestore.Attributes;
+﻿using Plugin.CloudFirestore;
+using Plugin.CloudFirestore.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,12 @@ namespace DnDApp.Models
 
         [MapTo("map")]
         public int[] FlattenedMap { get; set; }
+
+        [MapTo("tileset")]
+        public IDocumentReference TilesetReference { get; set; }
+
+        [Ignored]
+        public Tileset Tileset { get; set; }
 
         [Ignored]
         public int[,] Map { get; set; }
