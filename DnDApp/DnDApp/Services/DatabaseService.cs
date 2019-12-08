@@ -106,6 +106,7 @@ namespace DnDApp.Services
             Tilemap tilemap = document.ToObject<Tilemap>();
             tilemap.Map = Tilemap.Reconstruct(tilemap.FlattenedMap, tilemap.Width, tilemap.Height);
             tilemap.Tileset = await GetTileset(tilemap.TilesetReference);
+            await tilemap.Tileset.LoadImagesAsync();
             return tilemap;
         }
     }

@@ -2,6 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Plugin.FirebaseStorage;
+using Xamarin.Forms;
+using System.IO;
+using SkiaSharp;
+using System.Threading.Tasks;
 
 namespace DnDApp.Models
 {
@@ -12,5 +17,17 @@ namespace DnDApp.Models
 
         [MapTo("imageUrl")]
         public string ImageURL { get; set; }
+
+        public ImageSource ImgSource { get; private set; }
+        public SKImage SkiaImage { get; private set; }
+
+        public async Task LoadImageAsync()
+        {
+            Stream stream = await CrossFirebaseStorage.Current.Instance
+                .GetReferenceFromPath(ImageURL)
+                .GetStreamAsync();
+            ImgSource = ImageSource.FromStream(() => stream);
+            SkiaImage = SKImage.FromEncodedData(stream);
+        }
     }
 }

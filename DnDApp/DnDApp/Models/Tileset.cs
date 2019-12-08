@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DnDApp.Models
 {
@@ -25,6 +26,16 @@ namespace DnDApp.Models
         {
             get => Tiles[index];
             set => Tiles[index] = value;
+        }
+
+        public async Task LoadImagesAsync()
+        {
+            var taskList = new List<Task>();
+            foreach(Tile tile in Tiles)
+            {
+                taskList.Add(tile.LoadImageAsync());
+            }
+            await Task.WhenAll(taskList);
         }
     }
 }

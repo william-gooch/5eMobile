@@ -10,7 +10,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
@@ -26,9 +26,10 @@
                     <GridItemsLayout Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
-            <StackLayout Margin="10" Spacing="10" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                <Button x:Name="PanButton" Text="Pan" Clicked="PanButton_Clicked" />
-                <Button x:Name="DrawButton" Text="Draw" Clicked="DrawButton_Clicked" />
+            <StackLayout Padding="10" Spacing="10" Grid.Row="1" Grid.Column="0"
+                         Orientation="Horizontal" BackgroundColor="White">
+                <Button x:Name="PanButton" Text="Pan" FontSize="Small" Clicked="PanButton_Clicked" />
+                <Button x:Name="DrawButton" Text="Draw" FontSize="Small" Clicked="DrawButton_Clicked" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

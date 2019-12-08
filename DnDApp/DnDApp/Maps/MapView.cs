@@ -61,7 +61,7 @@ namespace DnDApp.Maps
 
             CurrentTransformMatrix = SKMatrix.MakeIdentity();
 
-            CurrentTool = MapTool.DRAW;
+            CurrentTool = MapTool.PAN;
             CurrentTileSelected = 0;
 
             var panGesture = new PanGestureRecognizer();
@@ -166,15 +166,7 @@ namespace DnDApp.Maps
                     int tileIndex = Tilemap.Map[row, col];
                     Tile tile = Tilemap.Tileset[tileIndex];
 
-                    // temporary test code!
-                    if (tileIndex == 0)
-                    {
-                        canvas.DrawRect(x, y, Tilemap.TileWidth, Tilemap.TileHeight, blackPaint);
-                    }
-                    else
-                    {
-                        canvas.DrawRect(x, y, Tilemap.TileWidth, Tilemap.TileHeight, whitePaint);
-                    }
+                    canvas.DrawImage(tile.SkiaImage, new SKRect(x, y, x + Tilemap.TileWidth, y + Tilemap.TileHeight));
                 }
             }
         }
