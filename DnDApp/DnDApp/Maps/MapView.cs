@@ -28,9 +28,7 @@ namespace DnDApp.Maps
         public static readonly BindableProperty TilemapProperty =
             BindableProperty.Create("Tilemap", typeof(Tilemap), typeof(MapView));
 
-        private (double x, double y) TemporaryPan { get; set; }
-        private (double x, double y) CurrentPan { get; set; }
-
+        private SKMatrix TemporaryTransformMatrix { get; set; }
         private SKMatrix CurrentTransformMatrix { get; set; }
 
         public Tilemap Tilemap
@@ -65,12 +63,38 @@ namespace DnDApp.Maps
             Content = canvasView;
 
             CurrentTransformMatrix = SKMatrix.MakeIdentity();
+            TemporaryTransformMatrix = SKMatrix.MakeIdentity();
 
             CurrentTileIndex = 0;
 
             var panGesture = new PanGestureRecognizer();
             panGesture.PanUpdated += OnPanTool;
             GestureRecognizers.Add(panGesture);
+
+            var pinchGesture = new PinchGestureRecognizer();
+            pinchGesture.PinchUpdated += OnZoom;
+            GestureRecognizers.Add(pinchGesture);
+        }
+
+        private void OnZoom(object sender, PinchGestureUpdatedEventArgs e)
+        {
+            if (CurrentTool == MapTool.PAN)
+            {
+                if(e.Status == GestureStatus.Running)
+                {
+                    var tempMatrix = new SKMatrix();
+                    float scaleX = (float)e.Scale;
+                    float scaleY = (float)e.Scale;
+                    float pivotX = (float)e.ScaleOrigin.X * canvasView.CanvasSize.Width;
+                    float pivotY = (float)e.ScaleOrigin.Y * canvasView.CanvasSize.Height;
+                    SKMatrix.Concat(ref tempMatrix,
+                        SKMatrix.MakeScale(scaleX, scaleY, pivotX, pivotY),
+                        TemporaryTransformMatrix);
+                    TemporaryTransformMatrix = tempMatrix;
+                    CurrentTransformMatrix = tempMatrix;
+                    canvasView.InvalidateSurface();
+                }
+            }
         }
 
         private void OnPanTool(object sender, PanUpdatedEventArgs e)
@@ -79,12 +103,18 @@ namespace DnDApp.Maps
             {
                 if (e.StatusType == GestureStatus.Running)
                 {
-                    TemporaryPan = (CurrentPan.x + e.TotalX, CurrentPan.y + e.TotalY);
-                    UpdateMatrix((float)TemporaryPan.x, (float)TemporaryPan.y, 1f);
+                    var tempMatrix = new SKMatrix();
+                    float transX = (float)(e.TotalX * (canvasView.CanvasSize.Width / canvasView.Width));
+                    float transY = (float)(e.TotalY * (canvasView.CanvasSize.Height / canvasView.Height));
+                    SKMatrix.Concat(ref tempMatrix,
+                        SKMatrix.MakeTranslation(transX, transY),
+                        CurrentTransformMatrix);
+                    TemporaryTransformMatrix = tempMatrix;
+                    canvasView.InvalidateSurface();
                 }
                 else if (e.StatusType == GestureStatus.Completed)
                 {
-                    CurrentPan = TemporaryPan;
+                    CurrentTransformMatrix = TemporaryTransformMatrix;
                 }
             }
         }
@@ -123,15 +153,6 @@ namespace DnDApp.Maps
             );
         }
 
-        private void UpdateMatrix(float tx, float ty, float scale)
-        {
-            var combinedMatrix = SKMatrix.MakeIdentity();
-            SKMatrix.PostConcat(ref combinedMatrix, SKMatrix.MakeScale(scale, scale));
-            SKMatrix.PostConcat(ref combinedMatrix, SKMatrix.MakeTranslation(tx, ty));
-            CurrentTransformMatrix = combinedMatrix;
-            canvasView.InvalidateSurface();
-        }
-
         public void OnPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             SKImageInfo info = args.Info;
@@ -142,7 +163,7 @@ namespace DnDApp.Maps
 
             if (Tilemap != null)
             {
-                canvas.SetMatrix(CurrentTransformMatrix);
+                canvas.SetMatrix(TemporaryTransformMatrix);
                 DrawTilemap(canvas);
             }
             else
