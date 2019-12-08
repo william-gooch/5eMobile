@@ -28,7 +28,10 @@ namespace DnDApp.Maps
         public static readonly BindableProperty TilemapProperty =
             BindableProperty.Create("Tilemap", typeof(Tilemap), typeof(MapView));
 
-        public (double x, double y) CurrentPan { get; set; }
+        private (double x, double y) TemporaryPan { get; set; }
+        private (double x, double y) CurrentPan { get; set; }
+
+        private SKMatrix CurrentTransformMatrix { get; set; }
 
         public Tilemap Tilemap
         {
@@ -56,6 +59,8 @@ namespace DnDApp.Maps
             canvasView.Touch += OnDrawTool;
             Content = canvasView;
 
+            CurrentTransformMatrix = SKMatrix.MakeIdentity();
+
             CurrentTool = MapTool.DRAW;
             CurrentTileSelected = 0;
 
@@ -70,12 +75,12 @@ namespace DnDApp.Maps
             {
                 if (e.StatusType == GestureStatus.Running)
                 {
-                    canvasView.TranslationX = CurrentPan.x + e.TotalX;
-                    canvasView.TranslationY = CurrentPan.y + e.TotalY;
+                    TemporaryPan = (CurrentPan.x + e.TotalX, CurrentPan.y + e.TotalY);
+                    UpdateMatrix((float)TemporaryPan.x, (float)TemporaryPan.y, 1f);
                 }
                 else if (e.StatusType == GestureStatus.Completed)
                 {
-                    CurrentPan = (canvasView.TranslationX, canvasView.TranslationY);
+                    CurrentPan = TemporaryPan;
                 }
             }
         }
@@ -86,8 +91,11 @@ namespace DnDApp.Maps
             {
                 if(e.ActionType == SKTouchAction.Pressed || e.ActionType == SKTouchAction.Moved)
                 {
-                    int col = (int)Math.Floor(e.Location.X / Tilemap.TileWidth);
-                    int row = (int)Math.Floor(e.Location.Y / Tilemap.TileHeight);
+                    var inverseMatrix = new SKMatrix();
+                    CurrentTransformMatrix.TryInvert(out inverseMatrix);
+                    var transformedLocation = inverseMatrix.MapPoint(e.Location);
+                    int col = (int)Math.Floor(transformedLocation.X / Tilemap.TileWidth);
+                    int row = (int)Math.Floor(transformedLocation.Y / Tilemap.TileHeight);
 
                     if(col >= Tilemap.Width || row >= Tilemap.Height)
                     {
@@ -111,6 +119,15 @@ namespace DnDApp.Maps
             );
         }
 
+        private void UpdateMatrix(float tx, float ty, float scale)
+        {
+            var combinedMatrix = SKMatrix.MakeIdentity();
+            SKMatrix.PostConcat(ref combinedMatrix, SKMatrix.MakeScale(scale, scale));
+            SKMatrix.PostConcat(ref combinedMatrix, SKMatrix.MakeTranslation(tx, ty));
+            CurrentTransformMatrix = combinedMatrix;
+            canvasView.InvalidateSurface();
+        }
+
         public void OnPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             SKImageInfo info = args.Info;
@@ -121,6 +138,7 @@ namespace DnDApp.Maps
 
             if (Tilemap != null)
             {
+                canvas.SetMatrix(CurrentTransformMatrix);
                 DrawTilemap(canvas);
             }
             else
