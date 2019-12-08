@@ -19,10 +19,12 @@
             </Grid.ColumnDefinitions>
             <maps:MapView x:Name="mapView" Grid.Row="0" Grid.Column="0" />
             <StackLayout BackgroundColor="White" Padding="30" Orientation="Vertical"
-                         Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                         Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+                         BindingContext="{x:Reference mapView}">
                 <Label Text="Tileset" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start" />
                 <CollectionView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                                ItemsSource="{Binding Source={x:Reference mapView}, Path=Tilemap.Tileset.Tiles}">
+                                ItemsSource="{Binding Tilemap.Tileset.Tiles}"
+                                SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="3" />
                     </CollectionView.ItemsLayout>

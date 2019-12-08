@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,11 @@ namespace DnDApp.Maps
         private void DrawButton_Clicked(object sender, EventArgs e)
         {
             mapView.CurrentTool = MapTool.DRAW;
+        }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mapView.CurrentTileIndex = mapView.Tilemap.Tileset.Tiles.IndexOf((Tile)e.CurrentSelection.First());
         }
     }
 }

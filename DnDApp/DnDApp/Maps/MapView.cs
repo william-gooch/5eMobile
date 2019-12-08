@@ -43,10 +43,15 @@ namespace DnDApp.Maps
             }
         }
 
-        public MapTool CurrentTool { get; set; }
+        public static BindableProperty CurrentToolProperty =
+            BindableProperty.Create("CurrentTool", typeof(MapTool), typeof(MapView), MapTool.PAN);
+        public MapTool CurrentTool {
+            get => (MapTool)GetValue(CurrentToolProperty);
+            set => SetValue(CurrentToolProperty, value);
+        }
 
         // the index of the current tile in the tileset.
-        public int CurrentTileSelected { get; set; }
+        public int CurrentTileIndex { get; set; }
 
         public MapView()
         {
@@ -61,8 +66,7 @@ namespace DnDApp.Maps
 
             CurrentTransformMatrix = SKMatrix.MakeIdentity();
 
-            CurrentTool = MapTool.PAN;
-            CurrentTileSelected = 0;
+            CurrentTileIndex = 0;
 
             var panGesture = new PanGestureRecognizer();
             panGesture.PanUpdated += OnPanTool;
@@ -102,9 +106,9 @@ namespace DnDApp.Maps
                         return;
                     }
 
-                    if(Tilemap.Map[row,col] != CurrentTileSelected)
+                    if(Tilemap.Map[row,col] != CurrentTileIndex)
                     {
-                        Tilemap.Map[row, col] = CurrentTileSelected;
+                        Tilemap.Map[row, col] = CurrentTileIndex;
                         canvasView.InvalidateSurface();
                     }
                 }
