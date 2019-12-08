@@ -6,6 +6,7 @@ using Plugin.FirebaseStorage;
 using Xamarin.Forms;
 using System.IO;
 using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using System.Threading.Tasks;
 
 namespace DnDApp.Models
@@ -26,8 +27,8 @@ namespace DnDApp.Models
             Stream stream = await CrossFirebaseStorage.Current.Instance
                 .GetReferenceFromPath(ImageURL)
                 .GetStreamAsync();
-            ImgSource = ImageSource.FromStream(() => stream);
             SkiaImage = SKImage.FromEncodedData(stream);
+            ImgSource = new SKImageImageSource { Image = SkiaImage };
         }
     }
 }

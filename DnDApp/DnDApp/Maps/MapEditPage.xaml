@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:maps="clr-namespace:DnDApp.Maps"
              mc:Ignorable="d"
-             x:Class="DnDApp.Maps.MapEditPage">
+             x:Class="DnDApp.Maps.MapEditPage"
+             x:Name="this">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -13,19 +14,25 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
             <maps:MapView x:Name="mapView" Grid.Row="0" Grid.Column="0" />
-            <CollectionView BackgroundColor="White" 
-                            Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-                <CollectionView.Header>
-                    <Label Text="Tileset" />
-                </CollectionView.Header>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
+            <StackLayout BackgroundColor="White" Padding="30" Orientation="Vertical"
+                         Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                <Label Text="Tileset" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Start" />
+                <CollectionView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                ItemsSource="{Binding Source={x:Reference mapView}, Path=Tilemap.Tileset.Tiles}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="3" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImgSource}" HeightRequest="80" WidthRequest="80"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
             <StackLayout Padding="10" Spacing="10" Grid.Row="1" Grid.Column="0"
                          Orientation="Horizontal" BackgroundColor="White">
                 <Button x:Name="PanButton" Text="Pan" FontSize="Small" Clicked="PanButton_Clicked" />
