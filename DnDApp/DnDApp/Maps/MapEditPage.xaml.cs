@@ -16,5 +16,15 @@ namespace DnDApp.Maps
         {
             InitializeComponent();
         }
+
+        private void PanButton_Clicked(object sender, EventArgs e)
+        {
+            mapView.CurrentTool = MapTool.PAN;
+        }
+
+        private void DrawButton_Clicked(object sender, EventArgs e)
+        {
+            mapView.CurrentTool = MapTool.DRAW;
+        }
     }
 }

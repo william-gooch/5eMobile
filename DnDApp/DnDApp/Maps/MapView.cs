@@ -40,7 +40,7 @@ namespace DnDApp.Maps
             }
         }
 
-        private MapTool CurrentTool { get; set; }
+        public MapTool CurrentTool { get; set; }
 
         // the index of the current tile in the tileset.
         public int CurrentTileSelected { get; set; }
@@ -88,6 +88,11 @@ namespace DnDApp.Maps
                 {
                     int col = (int)Math.Floor(e.Location.X / Tilemap.TileWidth);
                     int row = (int)Math.Floor(e.Location.Y / Tilemap.TileHeight);
+
+                    if(col >= Tilemap.Width || row >= Tilemap.Height)
+                    {
+                        return;
+                    }
 
                     if(Tilemap.Map[row,col] != CurrentTileSelected)
                     {

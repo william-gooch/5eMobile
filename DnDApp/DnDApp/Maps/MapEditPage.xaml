@@ -10,11 +10,26 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <maps:MapView Grid.Row="0" Grid.Column="0" />
+            <maps:MapView x:Name="mapView" Grid.Row="0" Grid.Column="0" />
+            <CollectionView BackgroundColor="White" 
+                            Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                <CollectionView.Header>
+                    <Label Text="Tileset" />
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+            <StackLayout Margin="10" Spacing="10" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                <Button x:Name="PanButton" Text="Pan" Clicked="PanButton_Clicked" />
+                <Button x:Name="DrawButton" Text="Draw" Clicked="DrawButton_Clicked" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
