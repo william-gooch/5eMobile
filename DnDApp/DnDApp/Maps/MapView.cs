@@ -15,6 +15,12 @@ using System.Threading;
 
 namespace DnDApp.Maps
 {
+    public enum MapTool
+    {
+        PAN,
+        DRAW
+    }
+
     public class MapView : ContentView
     {
         private SKCanvasView canvasView;
@@ -27,36 +33,69 @@ namespace DnDApp.Maps
         public Tilemap Tilemap
         {
             get => (Tilemap)GetValue(TilemapProperty);
-            set {
+            set
+            {
                 SetValue(TilemapProperty, value);
                 canvasView.InvalidateSurface();
             }
         }
 
+        private MapTool CurrentTool { get; set; }
+
+        // the index of the current tile in the tileset.
+        public int CurrentTileSelected { get; set; }
+
         public MapView()
         {
             // temporary test code!
             LoadTilemapFromDatabase();
-            
+
             canvasView = new SKCanvasView();
             canvasView.PaintSurface += OnPaintSurface;
+            canvasView.EnableTouchEvents = true;
+            canvasView.Touch += OnDrawTool;
             Content = canvasView;
 
+            CurrentTool = MapTool.DRAW;
+            CurrentTileSelected = 0;
+
             var panGesture = new PanGestureRecognizer();
-            panGesture.PanUpdated += OnPanned;
+            panGesture.PanUpdated += OnPanTool;
             GestureRecognizers.Add(panGesture);
         }
 
-        private void OnPanned(object sender, PanUpdatedEventArgs e)
+        private void OnPanTool(object sender, PanUpdatedEventArgs e)
         {
-            if(e.StatusType == GestureStatus.Running)
+            if (CurrentTool == MapTool.PAN)
             {
-                canvasView.TranslationX = CurrentPan.x + e.TotalX;
-                canvasView.TranslationY = CurrentPan.y + e.TotalY;
+                if (e.StatusType == GestureStatus.Running)
+                {
+                    canvasView.TranslationX = CurrentPan.x + e.TotalX;
+                    canvasView.TranslationY = CurrentPan.y + e.TotalY;
+                }
+                else if (e.StatusType == GestureStatus.Completed)
+                {
+                    CurrentPan = (canvasView.TranslationX, canvasView.TranslationY);
+                }
             }
-            else if (e.StatusType == GestureStatus.Completed)
+        }
+
+        private void OnDrawTool(object sender, SKTouchEventArgs e)
+        {
+            if(CurrentTool == MapTool.DRAW)
             {
-                CurrentPan = (canvasView.TranslationX, canvasView.TranslationY);
+                if(e.ActionType == SKTouchAction.Pressed || e.ActionType == SKTouchAction.Moved)
+                {
+                    int col = (int)Math.Floor(e.Location.X / Tilemap.TileWidth);
+                    int row = (int)Math.Floor(e.Location.Y / Tilemap.TileHeight);
+
+                    if(Tilemap.Map[row,col] != CurrentTileSelected)
+                    {
+                        Tilemap.Map[row, col] = CurrentTileSelected;
+                        canvasView.InvalidateSurface();
+                    }
+                }
+                e.Handled = true;
             }
         }
 
@@ -75,7 +114,7 @@ namespace DnDApp.Maps
 
             canvas.Clear(Color.Transparent.ToSKColor());
 
-            if(Tilemap != null)
+            if (Tilemap != null)
             {
                 DrawTilemap(canvas);
             }
