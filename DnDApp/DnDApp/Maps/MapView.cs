@@ -18,7 +18,8 @@ namespace DnDApp.Maps
     public enum MapTool
     {
         PAN,
-        DRAW
+        DRAW,
+        ERASE
     }
 
     public class MapView : ContentView
@@ -40,6 +41,7 @@ namespace DnDApp.Maps
                 canvasView.InvalidateSurface();
             }
         }
+        public IDocumentReference TilemapRef { get; set; }
 
         public static BindableProperty CurrentToolProperty =
             BindableProperty.Create("CurrentTool", typeof(MapTool), typeof(MapView), MapTool.PAN);
@@ -121,7 +123,7 @@ namespace DnDApp.Maps
 
         private void OnDrawTool(object sender, SKTouchEventArgs e)
         {
-            if(CurrentTool == MapTool.DRAW)
+            if(CurrentTool == MapTool.DRAW || CurrentTool == MapTool.ERASE)
             {
                 if(e.ActionType == SKTouchAction.Pressed || e.ActionType == SKTouchAction.Moved)
                 {
@@ -131,15 +133,26 @@ namespace DnDApp.Maps
                     int col = (int)Math.Floor(transformedLocation.X / Tilemap.TileWidth);
                     int row = (int)Math.Floor(transformedLocation.Y / Tilemap.TileHeight);
 
-                    if(col >= Tilemap.Width || row >= Tilemap.Height)
+                    if(col >= Tilemap.Width || row >= Tilemap.Height || col < 0 || row < 0)
                     {
                         return;
                     }
 
-                    if(Tilemap.Map[row,col] != CurrentTileIndex)
+                    if (CurrentTool == MapTool.DRAW)
                     {
-                        Tilemap.Map[row, col] = CurrentTileIndex;
-                        canvasView.InvalidateSurface();
+                        if (Tilemap.Map[row, col] != CurrentTileIndex)
+                        {
+                            Tilemap.Map[row, col] = CurrentTileIndex;
+                            canvasView.InvalidateSurface();
+                        }
+                    }
+                    else if (CurrentTool == MapTool.ERASE)
+                    {
+                        if(Tilemap.Map[row, col] != -1)
+                        {
+                            Tilemap.Map[row, col] = -1;
+                            canvasView.InvalidateSurface();
+                        }
                     }
                 }
                 e.Handled = true;
@@ -148,9 +161,8 @@ namespace DnDApp.Maps
 
         public async void LoadTilemapFromDatabase()
         {
-            Tilemap = await DatabaseService.GetTilemap(
-                CrossCloudFirestore.Current.Instance.GetDocument("/users/hhd7yBMCPjXtmDr0dwnsiHaU8I83/tilemaps/GhKuOoAUdTa9FSD6xDPU")
-            );
+            TilemapRef = CrossCloudFirestore.Current.Instance.GetDocument("/users/hhd7yBMCPjXtmDr0dwnsiHaU8I83/tilemaps/GhKuOoAUdTa9FSD6xDPU");
+            Tilemap = await DatabaseService.GetTilemap(TilemapRef);
         }
 
         public void OnPaintSurface(object sender, SKPaintSurfaceEventArgs args)
@@ -179,7 +191,6 @@ namespace DnDApp.Maps
         public void DrawTilemap(SKCanvas canvas)
         {
             SKPaint blackPaint = new SKPaint { Color = Color.Black.ToSKColor() };
-            SKPaint whitePaint = new SKPaint { Color = Color.White.ToSKColor() };
 
             for (int row = 0; row < Tilemap.Height; row++)
             {
@@ -189,9 +200,16 @@ namespace DnDApp.Maps
                     int x = col * Tilemap.TileWidth;
 
                     int tileIndex = Tilemap.Map[row, col];
-                    Tile tile = Tilemap.Tileset[tileIndex];
 
-                    canvas.DrawImage(tile.SkiaImage, new SKRect(x, y, x + Tilemap.TileWidth, y + Tilemap.TileHeight));
+                    if (tileIndex != -1)
+                    {
+                        Tile tile = Tilemap.Tileset[tileIndex];
+                        canvas.DrawImage(tile.SkiaImage, new SKRect(x, y, x + Tilemap.TileWidth, y + Tilemap.TileHeight));
+                    }
+                    else
+                    {
+                        canvas.DrawRect(x, y, Tilemap.TileWidth, Tilemap.TileHeight, blackPaint);
+                    }
                 }
             }
         }

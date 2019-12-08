@@ -52,6 +52,7 @@
                          Orientation="Horizontal" BackgroundColor="White">
                 <Button x:Name="PanButton" Text="Pan" FontSize="Small" Clicked="PanButton_Clicked" />
                 <Button x:Name="DrawButton" Text="Draw" FontSize="Small" Clicked="DrawButton_Clicked" />
+                <Button x:Name="EraseButton" Text="Erase" FontSize="Small" Clicked="EraseButton_Clicked" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

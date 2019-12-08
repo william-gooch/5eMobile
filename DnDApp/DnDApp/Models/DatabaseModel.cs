@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace DnDApp.Models
 {
-    public class DatabaseModel : BindableObject
+    public class DatabaseModel
     {
         [Id]
         public string UID { get; set; }

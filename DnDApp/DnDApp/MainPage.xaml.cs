@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 using DnDEngine.Character;
 using DnDEngine.Utilities;
 using DnDApp.Services;
+using Plugin.CloudFirestore;
 
 namespace DnDApp
 {

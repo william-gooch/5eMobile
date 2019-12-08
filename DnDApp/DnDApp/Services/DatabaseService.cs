@@ -109,5 +109,11 @@ namespace DnDApp.Services
             await tilemap.Tileset.LoadImagesAsync();
             return tilemap;
         }
+
+        public static async Task SaveTilemap(Tilemap tilemap, IDocumentReference tilemapRef)
+        {
+            tilemap.FlattenedMap = Tilemap.Flatten(tilemap.Map);
+            await tilemapRef.UpdateDataAsync(tilemap);
+        }
     }
 }
