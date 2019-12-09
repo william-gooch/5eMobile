@@ -34,7 +34,7 @@ namespace DnDApp
 
         private async void MapsButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Maps.MapEditPage());
+            await Navigation.PushAsync(new Maps.MapListPage());
         }
 
         private void LogOutButton_Clicked(object sender, EventArgs e)

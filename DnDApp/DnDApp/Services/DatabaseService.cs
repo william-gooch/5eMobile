@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using DnDEngine.Utilities;
 using DnDApp.Models;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace DnDApp.Services
 {
@@ -97,6 +99,41 @@ namespace DnDApp.Services
 
             Tileset tileset = document.ToObject<Tileset>();
             return tileset;
+        }
+
+        public static void ObserveTilemaps(User user, ObservableCollection<Tilemap> collection)
+        {
+            CrossCloudFirestore.Current.Instance
+                .GetCollection($"/users/{user.UID}/tilemaps")
+                .AddSnapshotListener(async (snapshot, err) =>
+                {
+                    if (err != null)
+                        throw err;
+                    if (snapshot != null)
+                    {
+                        foreach(var change in snapshot.DocumentChanges)
+                        {
+                            // the collection must be updated on the UI thread, otherwise trying
+                            // to change the CollectionView would throw an exception.
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                switch (change.Type)
+                                {
+                                    case DocumentChangeType.Added:
+                                        collection.Insert(change.NewIndex, await DatabaseService.GetTilemap(change.Document.Reference));
+                                        break;
+                                    case DocumentChangeType.Modified:
+                                        collection.RemoveAt(change.OldIndex);
+                                        collection.Insert(change.NewIndex, await DatabaseService.GetTilemap(change.Document.Reference));
+                                        break;
+                                    case DocumentChangeType.Removed:
+                                        collection.RemoveAt(change.OldIndex);
+                                        break;
+                                }
+                            });
+                        }
+                    }
+                });
         }
 
         public static async Task<Tilemap> GetTilemap(IDocumentReference tilemapRef)

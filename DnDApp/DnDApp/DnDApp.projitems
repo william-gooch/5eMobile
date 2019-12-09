@@ -52,6 +52,10 @@
       <DependentUpon>MapEditPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Maps\MapListPage.xaml.cs">
+      <DependentUpon>MapListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Maps\MapView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DatabaseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LightweightCharacterModel.cs" />
@@ -128,6 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Maps\MapEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Maps\MapListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

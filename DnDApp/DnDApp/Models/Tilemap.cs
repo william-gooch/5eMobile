@@ -8,6 +8,9 @@ namespace DnDApp.Models
 {
     public class Tilemap : DatabaseModel
     {
+        [MapTo("name")]
+        public string Name { get; set; }
+
         [MapTo("width")]
         public int Width { get; set; }
 
