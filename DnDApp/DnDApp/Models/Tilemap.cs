@@ -35,6 +35,19 @@ namespace DnDApp.Models
         [Ignored]
         public int[,] Map { get; set; }
 
+        public static Tilemap New()
+        {
+            Tilemap tilemap = new Tilemap
+            {
+                Name = "New Tilemap",
+                Width = 1,
+                Height = 1,
+                FlattenedMap = new Dictionary<string, int> { ["0"] = 0 },
+                TilesetReference = Tileset.DefaultTilesetReference
+            };
+            return tilemap;
+        }
+
         public static IDictionary<string,int> Flatten(int[,] map)
         {
             IDictionary<string,int> flattened = new Dictionary<string,int>();
@@ -63,6 +76,26 @@ namespace DnDApp.Models
                 }
             }
             return map;
+        }
+
+        public void Resize(int width, int height)
+        {
+            int[,] newMap = new int[height, width];
+            for(int i = 0; i < height; i++)
+            {
+                for(int j = 0; j < width; j++)
+                {
+                    if(i < Map.GetLength(0) && j < Map.GetLength(1))
+                    {
+                        newMap[i, j] = Map[i, j];
+                    }
+                    else
+                    {
+                        newMap[i, j] = -1;
+                    }
+                }
+            }
+            Map = newMap;
         }
     }
 }

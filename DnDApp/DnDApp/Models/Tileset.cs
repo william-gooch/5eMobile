@@ -1,4 +1,5 @@
-﻿using Plugin.CloudFirestore.Attributes;
+﻿using Plugin.CloudFirestore;
+using Plugin.CloudFirestore.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace DnDApp.Models
 
         [MapTo("tiles")]
         public List<Tile> Tiles { get; set; }
+
+        public static IDocumentReference DefaultTilesetReference =
+            CrossCloudFirestore.Current.Instance.GetDocument("/tilesets/olmmDyX6l96Mu6yPzbGD");
 
         public Tile this[string name]
         {

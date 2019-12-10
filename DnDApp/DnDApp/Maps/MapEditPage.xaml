@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
-            <maps:MapView x:Name="mapView" Grid.Row="0" Grid.Column="0" />
+            <maps:MapView x:Name="mapView" Grid.Row="0" Grid.Column="0" Tilemap="{Binding Source={x:Reference this}, Path=Tilemap}" />
             <StackLayout BackgroundColor="White" Padding="30" Orientation="Vertical"
                          Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
                          BindingContext="{x:Reference mapView}">
@@ -47,6 +47,14 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Width"/>
+                    <Entry x:Name="widthEntry" Placeholder="Width" Unfocused="widthEntry_Unfocused" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Height"/>
+                    <Entry x:Name="heightEntry" Placeholder="Height" Unfocused="heightEntry_Unfocused" />
+                </StackLayout>
             </StackLayout>
             <StackLayout Padding="10" Spacing="10" Grid.Row="1" Grid.Column="0"
                          Orientation="Horizontal" BackgroundColor="White">

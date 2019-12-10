@@ -20,6 +20,18 @@ namespace DnDApp.Maps
         {
             InitializeComponent();
         }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Tilemap tilemap = (Tilemap) e.CurrentSelection.First();
+            MapEditPage mapEditPage = new MapEditPage { Tilemap = tilemap };
+            Navigation.PushAsync(mapEditPage);
+        }
+
+        private async void newToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await DatabaseService.NewTilemap(DependencyService.Get<IAuthService>().LoggedInUser);
+        }
     }
 
     public class MapListViewModel : INotifyPropertyChanged

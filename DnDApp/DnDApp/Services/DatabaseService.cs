@@ -143,14 +143,23 @@ namespace DnDApp.Services
             Tilemap tilemap = document.ToObject<Tilemap>();
             tilemap.Map = Tilemap.Reconstruct(tilemap.FlattenedMap, tilemap.Width, tilemap.Height);
             tilemap.Tileset = await GetTileset(tilemap.TilesetReference);
+            tilemap.Reference = tilemapRef;
             await tilemap.Tileset.LoadImagesAsync();
             return tilemap;
         }
 
-        public static async Task SaveTilemap(Tilemap tilemap, IDocumentReference tilemapRef)
+        public static async Task SaveTilemap(Tilemap tilemap)
         {
             tilemap.FlattenedMap = Tilemap.Flatten(tilemap.Map);
-            await tilemapRef.UpdateDataAsync(tilemap);
+            await tilemap.Reference.UpdateDataAsync(tilemap);
+        }
+
+        public static async Task NewTilemap(User user)
+        {
+            Tilemap tilemap = Tilemap.New();
+            await CrossCloudFirestore.Current.Instance
+                .GetCollection($"/users/{user.UID}/tilemaps")
+                .AddDocumentAsync(tilemap);
         }
     }
 }

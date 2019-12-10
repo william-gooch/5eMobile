@@ -10,16 +10,22 @@
     <ContentPage.BindingContext>
         <maps:MapListViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="newToolbarItem" Text="New" Clicked="newToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Maps}">
+        <CollectionView ItemsSource="{Binding Maps}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding Name}" />
-                    </StackLayout>
+                    <Frame Margin="10">
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Name}" FontSize="Large" />
+                            <Label Text="{Binding Tileset.Name}" />
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -41,7 +41,6 @@ namespace DnDApp.Maps
                 canvasView.InvalidateSurface();
             }
         }
-        public IDocumentReference TilemapRef { get; set; }
 
         public static BindableProperty CurrentToolProperty =
             BindableProperty.Create("CurrentTool", typeof(MapTool), typeof(MapView), MapTool.PAN);
@@ -55,9 +54,6 @@ namespace DnDApp.Maps
 
         public MapView()
         {
-            // temporary test code!
-            LoadTilemapFromDatabase();
-
             canvasView = new SKCanvasView();
             canvasView.PaintSurface += OnPaintSurface;
             canvasView.EnableTouchEvents = true;
@@ -157,12 +153,6 @@ namespace DnDApp.Maps
                 }
                 e.Handled = true;
             }
-        }
-
-        public async void LoadTilemapFromDatabase()
-        {
-            TilemapRef = CrossCloudFirestore.Current.Instance.GetDocument("/users/hhd7yBMCPjXtmDr0dwnsiHaU8I83/tilemaps/GhKuOoAUdTa9FSD6xDPU");
-            Tilemap = await DatabaseService.GetTilemap(TilemapRef);
         }
 
         public void OnPaintSurface(object sender, SKPaintSurfaceEventArgs args)

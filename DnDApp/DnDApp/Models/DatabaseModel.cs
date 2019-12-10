@@ -1,4 +1,5 @@
-﻿using Plugin.CloudFirestore.Attributes;
+﻿using Plugin.CloudFirestore;
+using Plugin.CloudFirestore.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +11,8 @@ namespace DnDApp.Models
     {
         [Id]
         public string UID { get; set; }
+
+        [Ignored]
+        public IDocumentReference Reference { get; set; }
     }
 }
