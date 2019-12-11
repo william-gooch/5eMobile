@@ -48,6 +48,10 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <StackLayout Orientation="Horizontal">
+                    <Label Text="Name"/>
+                    <Entry x:Name="nameEntry" Placeholder="Name" Unfocused="nameEntry_Unfocused" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Width"/>
                     <Entry x:Name="widthEntry" Placeholder="Width" Unfocused="widthEntry_Unfocused" />
                 </StackLayout>

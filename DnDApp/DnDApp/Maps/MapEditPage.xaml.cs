@@ -24,6 +24,7 @@ namespace DnDApp.Maps
                 SetValue(TilemapProperty, value);
                 widthEntry.Text = value.Width.ToString();
                 heightEntry.Text = value.Height.ToString();
+                nameEntry.Text = value.Name;
             }
         }
 
@@ -77,6 +78,11 @@ namespace DnDApp.Maps
                 Tilemap.Height = newHeight;
                 Tilemap.Resize(Tilemap.Width, Tilemap.Height);
             }
+        }
+
+        private void nameEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            Tilemap.Name = ((Entry)sender).Text;
         }
     }
 }

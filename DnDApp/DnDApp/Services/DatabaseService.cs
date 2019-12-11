@@ -120,7 +120,15 @@ namespace DnDApp.Services
                                 switch (change.Type)
                                 {
                                     case DocumentChangeType.Added:
-                                        collection.Insert(change.NewIndex, await DatabaseService.GetTilemap(change.Document.Reference));
+                                        Tilemap tilemap = await DatabaseService.GetTilemap(change.Document.Reference);
+                                        if (change.NewIndex >= collection.Count)
+                                        {
+                                            collection.Add(tilemap);
+                                        }
+                                        else
+                                        {
+                                            collection.Insert(change.NewIndex, tilemap);
+                                        }
                                         break;
                                     case DocumentChangeType.Modified:
                                         collection.RemoveAt(change.OldIndex);
